@@ -1,0 +1,17 @@
+# Algo
+"train" : True
+"test" : False
+"test_agent_ID" : "BBX_1"
+"cma_std" : 0.3
+"iters" : 10
+
+# Ros
+"node_name" : "bbx_supervised_marv_trainer"
+"path_to_bagfiles" : "../../bagfiles/tradr/tradr_filtered"
+"tracker_state_out" : "art/marv_tracker_state"
+"flippers_position_control_out" : "marv/flippers_position_controller/cmd_vel"
+"flippers_state_out_bagfile" : "flippers_state"
+"trav_vis_hm_out" : "art/trav_vis_hm"
+"ros_rate" : 100
+"bagfile_playrate" : 10
+"trn_val_ratio" : 0.8

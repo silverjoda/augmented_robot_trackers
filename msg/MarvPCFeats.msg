@@ -1,0 +1,8 @@
+std_msgs/Header header
+std_msgs/Float64MultiArray frontal_low_feat
+std_msgs/Float64MultiArray frontal_mid_feat
+std_msgs/Float64MultiArray rear_low_feat
+std_msgs/Float64MultiArray fl_flipper_feat
+std_msgs/Float64MultiArray fr_flipper_feat
+std_msgs/Float64MultiArray rl_flipper_feat
+std_msgs/Float64MultiArray rr_flipper_feat

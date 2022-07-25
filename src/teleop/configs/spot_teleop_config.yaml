@@ -1,0 +1,11 @@
+# Tracker
+"node_name" : "art_spot_teleop"
+"joy_in" : "joy"
+"cmd_vel_out" : "cmd_vel"
+"ros_rate" : 20
+"vel_x" : 0.8
+"vel_y" : 0.5
+"ang_vel_z" : 0.8
+"stance_change_cooldown" : 2
+
+

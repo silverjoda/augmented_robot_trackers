@@ -1,0 +1,15 @@
+# Very basic commander setup
+strategy_mode: none # maxDist minpos none greedy_euclid
+missionUpdateFreq: 1.0
+
+# virtual competition
+virtual_approachTimeLimit: 20
+virtual_returnTimeTrigger: 30
+
+# build communication network - simple model, drop after some distance from others
+net_ack_required: false
+net_dropModulesFromStart: false # if this is true, robot will drop net modules
+net_minDropDistance: 5.0
+net_sameModuledistTolerance: 1.0
+
+

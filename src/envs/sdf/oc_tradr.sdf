@@ -1,0 +1,496 @@
+<sdf version='1.7'>
+  <world name='example'>
+    <physics name='4ms' type='dart'>
+      <max_step_size>0.004</max_step_size>
+      <real_time_factor>10</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+    <scene>
+      <ambient>0.2 0.2 0.2 1</ambient>
+      <background>0.8 0.8 0.8 1</background>
+      <shadows>1</shadows>
+    </scene>
+    <light name='sun' type='directional'>
+      <cast_shadows>1</cast_shadows>
+      <pose>0 0 10 0 -0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.8 0.8 0.8 1</specular>
+      <attenuation>
+        <range>1</range>
+        <constant>0.9</constant>
+        <linear>1</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>0 0 -1</direction>
+      <spot>
+        <inner_angle>0</inner_angle>
+        <outer_angle>0</outer_angle>
+        <falloff>0</falloff>
+      </spot>
+    </light>
+    <light name='light1' type='point'>
+      <pose>0 0 4 0 -0 0</pose>
+      <attenuation>
+        <range>1000</range>
+        <linear>0</linear>
+        <constant>0.1</constant>
+        <quadratic>0.005</quadratic>
+      </attenuation>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.8 0.8 0.8 1</specular>
+      <spot>
+        <inner_angle>5</inner_angle>
+        <outer_angle>10.1</outer_angle>
+        <falloff>0.1</falloff>
+      </spot>
+      <direction>0 0 -1</direction>
+    </light>
+    <light name='light2' type='spot'>
+      <pose>0 0 4 0 -0 0</pose>
+      <attenuation>
+        <range>1000</range>
+        <linear>0.1</linear>
+        <constant>0.2</constant>
+        <quadratic>0.005</quadratic>
+      </attenuation>
+      <diffuse>0.8 0.8 0.5 1</diffuse>
+      <specular>0.8 0.8 0.5 1</specular>
+      <spot>
+        <inner_angle>5</inner_angle>
+        <outer_angle>10.1</outer_angle>
+        <falloff>0.1</falloff>
+      </spot>
+      <direction>0 0 -1</direction>
+    </light>
+    <gravity>0 0 -9.8</gravity>
+    <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
+    <atmosphere type='adiabatic'/>
+    <plugin name='__default__' filename='__default__'/>
+    <include>
+      <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/subt_tunnel_staging_area</uri>
+      <name>staging_area</name>
+      <pose>0 0 0 0 -0 0</pose>
+    </include>
+    <model name='tst_stairs'>
+      <pose>-3.12973 0.000103 0 0 -0 1.57</pose>
+      <link name='Stairs_11'>
+        <visual name='Stairs_11_Visual_0'>
+          <pose>-0.002619 -0.949353 0.1 0 -0 -3.14159</pose>
+          <geometry>
+            <box>
+              <size>1.2 0.3 0.2</size>
+            </box>
+          </geometry>
+          <meta>
+            <layer>0</layer>
+          </meta>
+          <plugin name='__default__' filename='__default__'/>
+        </visual>
+        <collision name='Stairs_11_Collision_0'>
+          <geometry>
+            <box>
+              <size>1.2 0.3 0.2</size>
+            </box>
+          </geometry>
+          <pose>-0.002619 -0.949353 0.1 0 -0 -3.14159</pose>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='Stairs_11_Visual_1'>
+          <pose>-0.002619 -0.649353 0.3 0 -0 -3.14159</pose>
+          <geometry>
+            <box>
+              <size>1.2 0.3 0.2</size>
+            </box>
+          </geometry>
+          <meta>
+            <layer>0</layer>
+          </meta>
+          <plugin name='__default__' filename='__default__'/>
+        </visual>
+        <collision name='Stairs_11_Collision_1'>
+          <geometry>
+            <box>
+              <size>1.2 0.3 0.2</size>
+            </box>
+          </geometry>
+          <pose>-0.002619 -0.649353 0.3 0 -0 -3.14159</pose>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='Stairs_11_Visual_2'>
+          <pose>-0.002619 -0.349353 0.5 0 -0 -3.14159</pose>
+          <geometry>
+            <box>
+              <size>1.2 0.3 0.2</size>
+            </box>
+          </geometry>
+          <meta>
+            <layer>0</layer>
+          </meta>
+          <plugin name='__default__' filename='__default__'/>
+        </visual>
+        <collision name='Stairs_11_Collision_2'>
+          <geometry>
+            <box>
+              <size>1.2 0.3 0.2</size>
+            </box>
+          </geometry>
+          <pose>-0.002619 -0.349353 0.5 0 -0 -3.14159</pose>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+      </link>
+      <link name='Stairs_7'>
+        <visual name='Stairs_7_Visual_0'>
+          <pose>0.001265 0.999354 0.075 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>1.2 0.2 0.15</size>
+            </box>
+          </geometry>
+          <meta>
+            <layer>0</layer>
+          </meta>
+          <plugin name='__default__' filename='__default__'/>
+        </visual>
+        <collision name='Stairs_7_Collision_0'>
+          <geometry>
+            <box>
+              <size>1.2 0.2 0.15</size>
+            </box>
+          </geometry>
+          <pose>0.001265 0.999354 0.075 0 -0 0</pose>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='Stairs_7_Visual_1'>
+          <pose>0.001265 0.799354 0.225 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>1.2 0.2 0.15</size>
+            </box>
+          </geometry>
+          <meta>
+            <layer>0</layer>
+          </meta>
+          <plugin name='__default__' filename='__default__'/>
+        </visual>
+        <collision name='Stairs_7_Collision_1'>
+          <geometry>
+            <box>
+              <size>1.2 0.2 0.15</size>
+            </box>
+          </geometry>
+          <pose>0.001265 0.799354 0.225 0 -0 0</pose>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='Stairs_7_Visual_2'>
+          <pose>0.001265 0.599354 0.375 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>1.2 0.2 0.15</size>
+            </box>
+          </geometry>
+          <meta>
+            <layer>0</layer>
+          </meta>
+          <plugin name='__default__' filename='__default__'/>
+        </visual>
+        <collision name='Stairs_7_Collision_2'>
+          <geometry>
+            <box>
+              <size>1.2 0.2 0.15</size>
+            </box>
+          </geometry>
+          <pose>0.001265 0.599354 0.375 0 -0 0</pose>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='Stairs_7_Visual_3'>
+          <pose>0.001265 0.399354 0.525 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>1.2 0.2 0.15</size>
+            </box>
+          </geometry>
+          <meta>
+            <layer>0</layer>
+          </meta>
+          <plugin name='__default__' filename='__default__'/>
+        </visual>
+        <collision name='Stairs_7_Collision_3'>
+          <geometry>
+            <box>
+              <size>1.2 0.2 0.15</size>
+            </box>
+          </geometry>
+          <pose>0.001265 0.399354 0.525 0 -0 0</pose>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+      </link>
+      <link name='Stairs_9'>
+        <visual name='Stairs_9_Visual_0'>
+          <pose>0.002619 0.049354 0.3 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>1.2 0.5 0.6</size>
+            </box>
+          </geometry>
+          <meta>
+            <layer>0</layer>
+          </meta>
+          <plugin name='__default__' filename='__default__'/>
+        </visual>
+        <collision name='Stairs_9_Collision_0'>
+          <geometry>
+            <box>
+              <size>1.2 0.5 0.6</size>
+            </box>
+          </geometry>
+          <pose>0.002619 0.049354 0.3 0 -0 0</pose>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+      </link>
+      <static>1</static>
+      <plugin name='__default__' filename='__default__'/>
+    </model>
+    <include>
+    <static>1</static>
+      <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Euro pallet</uri>
+      <name>euro_pallet_3</name>
+      <pose>-6.21762 -0.167044 0.260892 0.010706 0.365717 -0.086339</pose>
+    </include>
+    <include>
+    <static>1</static>
+      <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Euro pallet</uri>
+      <name>euro_pallet_4</name>
+      <pose>-7.26844 -0.088193 0.149165 0.012632 -0.3329 -0.082872</pose>
+    </include>
+    <include>
+    <static>1</static>
+      <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Euro pallet</uri>
+      <name>euro_pallet_5</name>
+      <pose>-6.85395 -0.127405 0.287159 -0.051656 -0.509437 0.042801</pose>
+    </include>
+
+    <model name='box'>
+    <static>1</static>
+      <pose>0.025861 -0.086193 -0.327447 0 -0 0</pose>
+      <link name='box_link'>
+        <inertial>
+          <inertia>
+            <ixx>0.167</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.167</iyy>
+            <iyz>0</iyz>
+            <izz>0.167</izz>
+          </inertia>
+          <mass>1</mass>
+        </inertial>
+        <collision name='box_collision'>
+          <geometry>
+            <box>
+              <size>1 1 1</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='box_visual'>
+          <geometry>
+            <box>
+              <size>1 1 1</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.3 0.3 0.3 1</ambient>
+            <diffuse>0.7 0.7 0.7 1</diffuse>
+            <specular>1 1 1 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name='box_0'>
+    <static>1</static>
+      <pose>2.73785 -0.015992 -0.253085 -0 -0 -0</pose>
+      <link name='box_link'>
+        <inertial>
+          <inertia>
+            <ixx>0.167</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.167</iyy>
+            <iyz>0</iyz>
+            <izz>0.167</izz>
+          </inertia>
+          <mass>1</mass>
+        </inertial>
+        <collision name='box_collision'>
+          <geometry>
+            <box>
+              <size>1 1 1</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='box_visual'>
+          <geometry>
+            <box>
+              <size>1 1 1</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.3 0.3 0.3 1</ambient>
+            <diffuse>0.7 0.7 0.7 1</diffuse>
+            <specular>1 1 1 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name='box_1'>
+    <static>1</static>
+      <pose>5.53856 -0.108356 -0.367305 0 -0.074173 0</pose>
+      <link name='box_link'>
+        <inertial>
+          <inertia>
+            <ixx>0.167</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.167</iyy>
+            <iyz>0</iyz>
+            <izz>0.167</izz>
+          </inertia>
+          <mass>1</mass>
+        </inertial>
+        <collision name='box_collision'>
+          <geometry>
+            <box>
+              <size>1 1 1</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='box_visual'>
+          <geometry>
+            <box>
+              <size>1 1 1</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.3 0.3 0.3 1</ambient>
+            <diffuse>0.7 0.7 0.7 1</diffuse>
+            <specular>1 1 1 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name='box_2'>
+    <static>1</static>
+      <pose>7.81071 -0.031998 -0.335482 0.136752 0.051472 -0.019045</pose>
+      <link name='box_link'>
+        <inertial>
+          <inertia>
+            <ixx>0.167</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.167</iyy>
+            <iyz>0</iyz>
+            <izz>0.167</izz>
+          </inertia>
+          <mass>1</mass>
+        </inertial>
+        <collision name='box_collision'>
+          <geometry>
+            <box>
+              <size>1 1 1</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='box_visual'>
+          <geometry>
+            <box>
+              <size>1 1 1</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.3 0.3 0.3 1</ambient>
+            <diffuse>0.7 0.7 0.7 1</diffuse>
+            <specular>1 1 1 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+  </world>
+</sdf>

@@ -1,0 +1,7 @@
+"train" : False
+"render" : False
+"default_session_ID" : "TRN"
+"cma_std" : 0.3
+"iters" : 4000000
+"n_trials" : 2000
+

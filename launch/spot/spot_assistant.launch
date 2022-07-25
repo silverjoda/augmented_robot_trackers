@@ -1,0 +1,3 @@
+<launch>
+    <node pkg="augmented_robot_trackers" type="spot_assistant.py" name="art_spot_assistant" />
+</launch>

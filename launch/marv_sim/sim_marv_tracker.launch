@@ -1,0 +1,29 @@
+<launch>
+    <arg name="teleop_config_name" default="marv_sim_teleop_config.yaml" />
+    <arg name="tracker_config_name" default="marv_sim_tracker_config.yaml" />
+    <arg name="enable_teleop" default="true" />
+    <arg name="enable_marv_sim_translator" default="true" />
+
+    <remap from="/marv/cartesian_controller/cmd_vel" to="/X1/cmd_vel"/>
+
+    <node pkg="tf" type="static_transform_publisher" name="base_link_reverser" args="0 0 0 0 0 3.14159 /X1/base_link /X1/base_link_rev 100"/>
+    <node pkg="tf" type="static_transform_publisher" name="base_link_zrp_reverser" args="0 0 0 0 0 3.14159 /X1/base_link_zrp /X1/base_link_zrp_rev 100"/>
+
+    <!-- Make base_links which are on the floor -->
+    <!--<node pkg="tf2_ros" type="static_transform_publisher" name="bl_floor_pub" args="0 0 -0.11 0 0 0 X1/base_link X1/base_link_floor" output="screen" /> -->
+    <!--<node pkg="tf2_ros" type="static_transform_publisher" name="bl_floor_rev_pub" args="0 0 -0.11 0 0 0 X1/base_link_rev X1/base_link_rev_floor" output="screen" /> -->
+
+    <node pkg="augmented_robot_trackers" type="bl_zrp_frame_publisher.py" name="bl_zrp_frame_publisher" output="screen" />
+    <node pkg="augmented_robot_trackers" type="marv_tracker.py" name="art_marv_tracker" args="$(arg tracker_config_name)" output="screen" />
+    <node pkg="augmented_robot_trackers" type="marv_sim_translator.py" name="art_marv_tradr_translator" output="screen" if="$(arg enable_marv_sim_translator)"/>
+    <!-- <node pkg="augmented_robot_trackers" type="dummy_path_publisher.py" name="dummy_path_publisher" output="screen" /> -->
+
+    <group if="$(arg enable_teleop)">
+        <node pkg="joy" type="joy_node" name="joy_node" output="screen">
+            <param name="dev" type="string" value="/dev/input/js0" />
+        </node>
+        <node pkg="augmented_robot_trackers" type="marv_teleop.py" name="marv_teleop" args="$(arg teleop_config_name)" output="screen" />
+    </group>
+
+</launch>
+

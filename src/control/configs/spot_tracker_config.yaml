@@ -1,0 +1,31 @@
+# Tracker
+"node_name" : "spot/art/path_follower"
+"enable_cmd_vel" : True
+"ros_rate" : 10
+"tf_buffer_size" : 10
+"planner_path_topic" : "spot/rds/path"
+"cmd_vel_publish_topic" : "cmd_vel"
+"current_target_topic" : "spot/rds/current_tracker_target"
+"force_dir_topic" : "spot/rds/force_dir"
+"root_frame" : "map"
+"spot_root_frame" : "body"
+"bidirectional_tracking" : False
+
+"waypoint_reach_distance" : 0.7
+#"final_waypoint_reach_distance" : 0.4
+"turn_vel_thresh" : 0.4 # Greater yaw deviations turn off linear velocity
+"turn_inhibition_sensitivity" : 1 # Affects how turn error inhibits linear velocity
+"turn_vel_sensitivity" : 2 # Sensitivity to linear error
+"lin_vel_sensitivity" : 3 # Sensitivity to turn error
+"strafe_vel_sensitivity" : 2 # Sensitivity to turn error
+"force_max_strafe_vel" : 0.2
+"force_max_fw_vel" : 0.4
+"cmd_vel_scalar" : 1. # Scales the final velocity outputs
+"cmd_vel_lin_clip" : 1.5
+"cmd_vel_strafe_clip" : 0.5
+"cmd_vel_ang_clip" : 0.8
+
+
+
+
+

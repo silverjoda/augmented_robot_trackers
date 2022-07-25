@@ -1,0 +1,464 @@
+<sdf version='1.7'>
+  <world name='example'>
+    <physics name='4ms' type='dart'>
+      <max_step_size>0.004</max_step_size>
+      <real_time_factor>10</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+    <scene>
+      <ambient>0.2 0.2 0.2 1</ambient>
+      <background>0.8 0.8 0.8 1</background>
+      <shadows>1</shadows>
+    </scene>
+    <light name='sun' type='directional'>
+      <cast_shadows>1</cast_shadows>
+      <pose>0 0 10 0 -0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.8 0.8 0.8 1</specular>
+      <attenuation>
+        <range>1</range>
+        <constant>0.9</constant>
+        <linear>1</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>0 0 -1</direction>
+      <spot>
+        <inner_angle>0</inner_angle>
+        <outer_angle>0</outer_angle>
+        <falloff>0</falloff>
+      </spot>
+    </light>
+    <light name='light1' type='point'>
+      <pose>0 0 4 0 -0 0</pose>
+      <attenuation>
+        <range>1000</range>
+        <linear>0</linear>
+        <constant>0.1</constant>
+        <quadratic>0.005</quadratic>
+      </attenuation>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.8 0.8 0.8 1</specular>
+      <spot>
+        <inner_angle>5</inner_angle>
+        <outer_angle>10.1</outer_angle>
+        <falloff>0.1</falloff>
+      </spot>
+      <direction>0 0 -1</direction>
+    </light>
+    <light name='light2' type='spot'>
+      <pose>0 0 4 0 -0 0</pose>
+      <attenuation>
+        <range>1000</range>
+        <linear>0.1</linear>
+        <constant>0.2</constant>
+        <quadratic>0.005</quadratic>
+      </attenuation>
+      <diffuse>0.8 0.8 0.5 1</diffuse>
+      <specular>0.8 0.8 0.5 1</specular>
+      <spot>
+        <inner_angle>5</inner_angle>
+        <outer_angle>10.1</outer_angle>
+        <falloff>0.1</falloff>
+      </spot>
+      <direction>0 0 -1</direction>
+    </light>
+    <gravity>0 0 -9.8</gravity>
+    <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
+    <atmosphere type='adiabatic'/>
+    <plugin name='__default__' filename='__default__'/>
+    <include>
+      <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/subt_tunnel_staging_area</uri>
+      <name>staging_area</name>
+      <pose>0 0 0 0 -0 0</pose>
+    </include>
+    <model name='tst_stairs'>
+      <pose>-3 0 0 0 -0 1.57</pose>
+      <link name='Stairs_11'>
+        <visual name='Stairs_11_Visual_0'>
+          <pose>-0.002619 -0.949353 0.1 0 -0 -3.14159</pose>
+          <geometry>
+            <box>
+              <size>1.2 0.3 0.2</size>
+            </box>
+          </geometry>
+          <meta>
+            <layer>0</layer>
+          </meta>
+          <plugin name='__default__' filename='__default__'/>
+        </visual>
+        <collision name='Stairs_11_Collision_0'>
+          <geometry>
+            <box>
+              <size>1.2 0.3 0.2</size>
+            </box>
+          </geometry>
+          <pose>-0.002619 -0.949353 0.1 0 -0 -3.14159</pose>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='Stairs_11_Visual_1'>
+          <pose>-0.002619 -0.649353 0.3 0 -0 -3.14159</pose>
+          <geometry>
+            <box>
+              <size>1.2 0.3 0.2</size>
+            </box>
+          </geometry>
+          <meta>
+            <layer>0</layer>
+          </meta>
+          <plugin name='__default__' filename='__default__'/>
+        </visual>
+        <collision name='Stairs_11_Collision_1'>
+          <geometry>
+            <box>
+              <size>1.2 0.3 0.2</size>
+            </box>
+          </geometry>
+          <pose>-0.002619 -0.649353 0.3 0 -0 -3.14159</pose>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='Stairs_11_Visual_2'>
+          <pose>-0.002619 -0.349353 0.5 0 -0 -3.14159</pose>
+          <geometry>
+            <box>
+              <size>1.2 0.3 0.2</size>
+            </box>
+          </geometry>
+          <meta>
+            <layer>0</layer>
+          </meta>
+          <plugin name='__default__' filename='__default__'/>
+        </visual>
+        <collision name='Stairs_11_Collision_2'>
+          <geometry>
+            <box>
+              <size>1.2 0.3 0.2</size>
+            </box>
+          </geometry>
+          <pose>-0.002619 -0.349353 0.5 0 -0 -3.14159</pose>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+      </link>
+      <link name='Stairs_7'>
+        <visual name='Stairs_7_Visual_0'>
+          <pose>0.001265 0.999354 0.075 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>1.2 0.2 0.15</size>
+            </box>
+          </geometry>
+          <meta>
+            <layer>0</layer>
+          </meta>
+          <plugin name='__default__' filename='__default__'/>
+        </visual>
+        <collision name='Stairs_7_Collision_0'>
+          <geometry>
+            <box>
+              <size>1.2 0.2 0.15</size>
+            </box>
+          </geometry>
+          <pose>0.001265 0.999354 0.075 0 -0 0</pose>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='Stairs_7_Visual_1'>
+          <pose>0.001265 0.799354 0.225 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>1.2 0.2 0.15</size>
+            </box>
+          </geometry>
+          <meta>
+            <layer>0</layer>
+          </meta>
+          <plugin name='__default__' filename='__default__'/>
+        </visual>
+        <collision name='Stairs_7_Collision_1'>
+          <geometry>
+            <box>
+              <size>1.2 0.2 0.15</size>
+            </box>
+          </geometry>
+          <pose>0.001265 0.799354 0.225 0 -0 0</pose>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='Stairs_7_Visual_2'>
+          <pose>0.001265 0.599354 0.375 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>1.2 0.2 0.15</size>
+            </box>
+          </geometry>
+          <meta>
+            <layer>0</layer>
+          </meta>
+          <plugin name='__default__' filename='__default__'/>
+        </visual>
+        <collision name='Stairs_7_Collision_2'>
+          <geometry>
+            <box>
+              <size>1.2 0.2 0.15</size>
+            </box>
+          </geometry>
+          <pose>0.001265 0.599354 0.375 0 -0 0</pose>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='Stairs_7_Visual_3'>
+          <pose>0.001265 0.399354 0.525 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>1.2 0.2 0.15</size>
+            </box>
+          </geometry>
+          <meta>
+            <layer>0</layer>
+          </meta>
+          <plugin name='__default__' filename='__default__'/>
+        </visual>
+        <collision name='Stairs_7_Collision_3'>
+          <geometry>
+            <box>
+              <size>1.2 0.2 0.15</size>
+            </box>
+          </geometry>
+          <pose>0.001265 0.399354 0.525 0 -0 0</pose>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+      </link>
+      <link name='Stairs_9'>
+        <visual name='Stairs_9_Visual_0'>
+          <pose>0.002619 0.049354 0.3 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>1.2 0.5 0.6</size>
+            </box>
+          </geometry>
+          <meta>
+            <layer>0</layer>
+          </meta>
+          <plugin name='__default__' filename='__default__'/>
+        </visual>
+        <collision name='Stairs_9_Collision_0'>
+          <geometry>
+            <box>
+              <size>1.2 0.5 0.6</size>
+            </box>
+          </geometry>
+          <pose>0.002619 0.049354 0.3 0 -0 0</pose>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+      </link>
+      <static>1</static>
+      <plugin name='__default__' filename='__default__'/>
+    </model>
+    <include>
+      <static>1</static>
+      <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Euro pallet</uri>
+      <name>pallet</name>
+      <pose>1.86827 0.142031 0.085849 0.00151 -0.025691 0.386388</pose>
+    </include>
+    <include>
+      <static>1</static>
+      <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Euro pallet</uri>
+      <name>euro_pallet_1</name>
+      <pose>2.63241 -0.167924 0.125134 0 0.070023 0.109937</pose>
+    </include>
+    <include>
+      <static>1</static>
+      <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Euro pallet</uri>
+      <name>euro_pallet_6</name>
+      <pose>7.00684 0.043382 0.077109 0.010009 -0.003857 -0.038917</pose>
+    </include>
+    <include>
+      <static>1</static>
+      <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Euro pallet</uri>
+      <name>euro_pallet_7</name>
+      <pose>-0.840698 2.88253 0.184555 -1e-06 0.231634 0.012517</pose>
+    </include>
+    <include>
+      <static>1</static>
+      <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Euro pallet</uri>
+      <name>euro_pallet_8</name>
+      <pose>-1.21903 2.95061 0.269799 0.003426 -0.313752 0.013942</pose>
+    </include>
+    <include>
+      <static>1</static>
+      <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Euro pallet</uri>
+      <name>euro_pallet_9</name>
+      <pose>-2.01645 2.97214 0.207343 0.000202 0.312141 -0.001549</pose>
+    </include>
+    <include>
+      <static>1</static>
+      <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Euro pallet</uri>
+      <name>euro_pallet_13</name>
+      <pose>7.11305 0.043276 0.145151 0.027837 -0.194185 -0.085695</pose>
+    </include>
+    <include>
+      <static>1</static>
+      <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Euro pallet</uri>
+      <name>euro_pallet_14</name>
+      <pose>-2.7279 2.99314 0.068568 -1.2e-05 0.005971 -0.038023</pose>
+    </include>
+    <include>
+      <static>1</static>
+      <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Euro pallet</uri>
+      <name>euro_pallet_17</name>
+      <pose>6.07779 2.83631 -0.195177 -1.88813 -1.46823 1.9005</pose>
+    </include>
+    <include>
+      <static>1</static>
+      <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Euro pallet</uri>
+      <name>euro_pallet_18</name>
+      <pose>6.35316 2.90563 -0.155873 1.70569 -1.56109 1.18356</pose>
+    </include>
+    <include>
+      <static>1</static>
+      <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Euro pallet</uri>
+      <name>euro_pallet_37</name>
+      <pose>6.36775 0.049564 0.124668 -0.000997 -0.089193 0.08301</pose>
+    </include>
+    <include>
+      <static>1</static>
+      <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Euro pallet</uri>
+      <name>euro_pallet_38</name>
+      <pose>5.37239 0.318644 0.132745 -0.266548 -4.3e-05 1.56484</pose>
+    </include>
+    <include>
+      <static>1</static>
+      <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Euro pallet</uri>
+      <name>euro_pallet_40</name>
+      <pose>8.19947 1.43777 -0.018573 0.022178 -0.413321 1.40014</pose>
+    </include>
+    <include>
+      <static>1</static>
+      <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Euro pallet</uri>
+      <name>euro_pallet_24</name>
+      <pose>5.41672 -0.306776 0.114863 0.289351 0.008528 -0.949271</pose>
+    </include>
+    <include>
+      <static>1</static>
+      <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Euro pallet</uri>
+      <name>euro_pallet_26</name>
+      <pose>4.28508 2.80154 0.100786 -0.000961 0.21767 1.64137</pose>
+    </include>
+    <include>
+      <static>1</static>
+      <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Euro pallet</uri>
+      <name>euro_pallet_28</name>
+      <pose>2.04228 3.0055 0.213098 0.000792 0.000495 0.060429</pose>
+    </include>
+    <include>
+      <static>1</static>
+      <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Euro pallet</uri>
+      <name>euro_pallet_29</name>
+      <pose>-6.45176 3.31644 -0.258352 -2.20677 1.52799 -2.48552</pose>
+    </include>
+    <include>
+      <static>1</static>
+      <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Euro pallet</uri>
+      <name>euro_pallet_30</name>
+      <pose>2.29399 3.41177 0.069985 1.9e-05 -4.5e-05 0.003314</pose>
+    </include>
+    <include>
+      <static>1</static>
+      <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Euro pallet</uri>
+      <name>euro_pallet_31</name>
+      <pose>1.33598 2.9119 0.069998 -2.3e-05 -0.380515 -0.005684</pose>
+    </include>
+    <include>
+      <static>1</static>
+      <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Euro pallet</uri>
+      <name>euro_pallet_33</name>
+      <pose>-4.26524 3.02007 0.07313 0.182856 0.378854 -0.019427</pose>
+    </include>
+    <include>
+      <static>1</static>
+      <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Euro pallet</uri>
+      <name>euro_pallet_35</name>
+      <pose>-6.3213 2.52251 -0.187517 0.117689 -1.4339 0.46088</pose>
+    </include>
+    <include>
+      <static>1</static>
+      <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Euro pallet</uri>
+      <name>euro_pallet_36</name>
+      <pose>-4.76703 3.065 0.195594 0.169617 0.128792 0.072615</pose>
+    </include>
+    <include>
+      <static>1</static>
+      <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Euro pallet</uri>
+      <name>euro_pallet</name>
+      <pose>-8.95711 1.1015 0.014607 -0.040511 0.022963 1.63688</pose>
+    </include>
+    <include>
+      <static>1</static>
+      <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Euro pallet</uri>
+      <name>euro_pallet_0</name>
+      <pose>-8.92302 1.09961 0.208932 -9e-05 -0.060937 -1.46917</pose>
+    </include>
+    <include>
+      <static>1</static>
+      <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Euro pallet</uri>
+      <name>euro_pallet_3</name>
+      <pose>-5.98269 -0.167044 0.260892 0.010706 0.365717 -0.086339</pose>
+    </include>
+    <include>
+      <static>1</static>
+      <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Euro pallet</uri>
+      <name>euro_pallet_4</name>
+      <pose>-6.99813 -0.232814 0.147433 -0.062808 -0.3329 -0.082872</pose>
+    </include>
+    <include>
+      <static>1</static>
+      <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Euro pallet</uri>
+      <name>euro_pallet_5</name>
+      <pose>-6.66201 -0.126521 0.312228 0.039365 -0.509437 0.042801</pose>
+    </include>
+  </world>
+</sdf>

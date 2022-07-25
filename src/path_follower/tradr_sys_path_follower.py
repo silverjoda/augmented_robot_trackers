@@ -1,0 +1,215 @@
+#!/usr/bin/python
+
+import os
+import sys
+import time
+import threading
+
+import numpy as np
+import rospy
+import tf2_ros
+from geometry_msgs.msg import Twist
+from nav_msgs.msg import Path
+from tf.transformations import euler_from_quaternion, quaternion_matrix
+from std_msgs.msg import String
+
+class PathFollower:
+    def __init__(self, config):
+        self.config = config
+        self.linear_tracking_momentum = 0
+        self.init_ros()
+
+    def init_ros(self):
+        rospy.init_node("path_follower_node")
+
+        self.ros_rate = rospy.Rate(self.config["ros_rate"])
+        self.tf_buffer = tf2_ros.Buffer(cache_time=rospy.Duration(10))
+        self.tf_listener = tf2_ros.TransformListener(self.tf_buffer)
+
+        self.path_lock = threading.Lock()
+        self.state_lock = threading.Lock()
+
+        self.last_state_change_time = time.time()
+
+        self.tracks_vel_publisher = rospy.Publisher("naex_tracker/cmd_vel",
+                                                    Twist,
+                                                    queue_size=1)
+
+        rospy.Subscriber("path",
+                         Path,
+                         self._ros_path_callback, queue_size=1)
+
+        rospy.Subscriber("art/marv_flipper_controller_state",
+                         String,
+                         self._ros_state_callback, queue_size=1)
+
+    def _ros_path_callback(self, data):
+        #if self.is_safe_to_change_plan():
+        with self.path_lock:
+            self.path_data = data
+
+    def _ros_state_callback(self, data):
+        with self.state_lock:
+            if hasattr(self, "state_data") and data.data != self.state_data.data:
+                self.last_state_change_time = time.time()
+            self.state_data = data
+
+    def is_safe_to_change_plan(self):
+        with self.state_lock:
+            if hasattr(self, "state_data") and time.time() - self.last_state_change_time > 1.0 and self.state_data.data == "NEUTRAL" or self.state_data.data.endswith("STAIRS"):
+                return True
+        return False
+
+    def update_linear_momentum(self, cmd_vel_linear):
+        if self.linear_tracking_momentum >= 0:
+            if cmd_vel_linear >= self.linear_tracking_momentum:
+                update_val = np.minimum(self.config["tracker_momentum_vel_x_increment"], cmd_vel_linear - self.linear_tracking_momentum)
+            else:
+                update_val = np.maximum(-self.config["tracker_momentum_vel_x_decrement"], cmd_vel_linear - self.linear_tracking_momentum)
+        else:
+            if cmd_vel_linear >= self.linear_tracking_momentum:
+                update_val = np.minimum(self.config["tracker_momentum_vel_x_decrement"],
+                                        cmd_vel_linear - self.linear_tracking_momentum)
+            else:
+                update_val = np.maximum(-self.config["tracker_momentum_vel_x_increment"],
+                                        cmd_vel_linear - self.linear_tracking_momentum)
+
+        self.linear_tracking_momentum = np.clip(self.linear_tracking_momentum + update_val,
+                                                -self.config["cmd_vel_lin_clip"],
+                                                self.config["cmd_vel_lin_clip"])
+
+    def calculate_cmd_vel(self, pose_dict, current_target):
+        if current_target is None or pose_dict is None:
+            return 0, 0, 0, 0, False
+
+        position = pose_dict["position"]
+        yaw = pose_dict["euler"][2]
+
+        # Distance between robot pose and target
+        pos_delta = np.sqrt(np.square(position.x - current_target.pose.position.x)
+                            + np.square(position.y - current_target.pose.position.y)
+                            + np.square(position.z - current_target.pose.position.z))
+
+        # Vector in x,y in which robot is facing
+        x1, y1 = [np.cos(yaw), np.sin(yaw)]
+
+        # Directional xy vector towards target
+        x2, y2 = (current_target.pose.position.x - position.x,
+                  current_target.pose.position.y - position.y)
+
+        det = x1 * y2 - y1 * x2
+        dot = x1 * x2 + y1 * y2
+
+        theta_delta = np.arctan2(det, dot)
+
+        changed_dir = False
+        if self.config["bidirectional_tracking"]:
+            x1_bw, y1_bw = -x1, -y1
+
+            det_bw = x1_bw * y2 - y1_bw * x2
+            dot_bw = x1_bw * x2 + y1_bw * y2
+            theta_delta_rev = np.arctan2(det_bw, dot_bw)
+            if abs(theta_delta_rev) < abs(theta_delta):
+                if self.current_base_link_frame == self.config["robot_prefix"] + "base_link_zrp":
+                    self.current_base_link_frame = self.config["robot_prefix"] + "base_link_zrp_rev"
+                else:
+                    self.current_base_link_frame = self.config["robot_prefix"] + "base_link_zrp"
+                theta_delta = theta_delta_rev
+                changed_dir = True
+
+        cmd_angular = theta_delta * self.config["turn_vel_sensitivity"]
+        cmd_linear = pos_delta * self.config["lin_vel_sensitivity"] \
+                     * np.maximum(self.config["turn_vel_thresh"] - abs(theta_delta) * self.config["turn_inhibition_sensitivity"], 0)
+
+        self.update_linear_momentum(cmd_linear)
+
+        # Clip to max bounds
+        cmd_linear_clipped = np.clip(self.linear_tracking_momentum, -self.config["cmd_vel_lin_clip"], self.config["cmd_vel_lin_clip"])
+        cmd_angular_clipped = np.clip(cmd_angular, -self.config["cmd_vel_ang_clip"], self.config["cmd_vel_ang_clip"])
+
+        return cmd_linear_clipped, cmd_angular_clipped, pos_delta, theta_delta, changed_dir
+
+    def get_robot_pose_dict(self):
+        # Get pose using TF
+        try:
+            trans = self.tf_buffer.lookup_transform(self.config["root_frame"],
+                                                    "base_link",
+                                                    rospy.Time(0),
+                                                    rospy.Duration(0))
+        except (tf2_ros.LookupException, tf2_ros.ConnectivityException, tf2_ros.ExtrapolationException) as err:
+            rospy.logwarn("Get_robot_pose_dict: TRANSFORMATION ERROR, err: {}".format(err))
+            return None
+
+        # Translation
+        pos = trans.transform.translation
+
+        # Orientation
+        quat = trans.transform.rotation
+        roll, pitch, yaw = euler_from_quaternion((quat.x, quat.y, quat.z, quat.w))
+        rot_mat = quaternion_matrix((quat.x, quat.y, quat.z, quat.w))
+
+        # Directional vectors
+        x1, y1 = [np.cos(yaw), np.sin(yaw)]
+
+        pose_dict = {"position": pos,
+                     "quat": quat,
+                     "matrix": rot_mat,
+                     "euler": (roll, pitch, yaw),
+                     "dir_vec": (x1, y1)}
+
+        # Give results in quaterion, euler and vector form
+        return pose_dict
+
+    def publish_track_vel(self, linear, angular):
+        msg = Twist()
+        msg.linear.x = linear
+        msg.linear.y = 0
+        msg.angular.z = angular
+        self.tracks_vel_publisher.publish(msg)
+
+    def update_path(self, pos_delta):
+        if hasattr(self, "path_data") and len(self.path_data.poses) > 1:
+            if np.abs(pos_delta) < self.config["waypoint_reach_dist"]:
+                del self.path_data.poses[0]
+
+    def step(self):
+        # Get required observations
+        robot_pose_dict = self.get_robot_pose_dict()
+
+        # Calculate tracking velocity
+        cmd_linear, cmd_angular = 0, 0
+        with self.path_lock:
+            if hasattr(self, "path_data") and len(self.path_data.poses) > 0:
+                target = self.path_data.poses[0]
+                cmd_linear, cmd_angular, pos_delta, theta_delta, changed_dir = self.calculate_cmd_vel(robot_pose_dict, target)
+
+                self.update_path(pos_delta)
+
+        # Step the linear momentum variables
+        self.update_linear_momentum(cmd_linear)
+
+        self.publish_track_vel(self.linear_tracking_momentum, cmd_angular)
+        self.ros_rate.sleep()
+
+    def loop(self):
+        rospy.loginfo("{} starting path following...".format("path_follower_node"))
+        while not rospy.is_shutdown():
+            self.step()
+
+def main():
+    myargv = rospy.myargv(argv=sys.argv)
+    if len(myargv) == 2:
+        config_name = myargv[1]
+    else:
+        config_name = "tradr_sys_path_follower_config.yaml"
+
+    import yaml
+    with open(os.path.join(os.path.dirname(__file__), "configs/{}".format(config_name)), 'r') as f:
+        tracker_config = yaml.load(f, Loader=yaml.FullLoader)
+
+    path_follower = PathFollower(tracker_config)
+    path_follower.loop()
+
+if __name__=="__main__":
+    main()
+

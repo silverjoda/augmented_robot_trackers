@@ -1,0 +1,44 @@
+# Ros params
+"cmd_vel_timeout" : 0.2
+"laser_timeout" : 1
+"ros_rate" : 10
+"bumper_bypass" : False
+"publish_bumpers_vis" : True
+"cmd_vel_in" : "naex_tracker/cmd_vel"
+
+# Behavioral params
+"bumper_detection_points_threshold" : 10 # If more than this many points, bumper is detected
+"stale_laser_vel_val" : 0.2 # If laser data is stale then vel will be limited by this value
+"enable_angular_to_linear_translation" : False
+"use_semantic_info" : False 
+"semantic_pc_name" : "points_filtered_jetson_traversability"
+
+# Static barrier
+"static_barrier_increment" : 0.01
+"static_barrier_decrement" : 0.03
+"static_barrier_minimum" : 0.5
+
+# Bumper region definitions
+"bumper_z_range" : [0.15, 0.5]
+"velocity_scale_factor" : 2.
+"bumper_hysteresis_thickness" : 0.2
+
+#"fl_bumper_bnds" : [0.45, 0.9, 0.0, 0.35, 0.05, 0.6]
+#"fr_bumper_bnds" : [0.45, 0.9, -0.35, 0.0, 0.05, 0.6]
+#"rl_bumper_bnds" : [-0.9, -0.45, 0.0, 0.35, 0.05, 0.6]
+#"rr_bumper_bnds" : [-0.9, -0.45, -0.35, 0.0, 0.05, 0.6]
+#
+#"sfl_bumper_bnds" : [0.0, 0.45, 0.35, 0.6, 0.05, 0.6]
+#"sfr_bumper_bnds" : [0.0, 0.45, -0.6, -0.35, 0.05, 0.6]
+#"srl_bumper_bnds" : [-0.45, 0.0, 0.35, 0.6, 0.05, 0.6]
+#"srr_bumper_bnds" : [-0.45, 0.0, -0.6, -0.35, 0.05, 0.6]
+
+"fl_bumper_bnds" : [0.4, 0.7, 0.0, 0.3, 0.05, 0.6]
+"fr_bumper_bnds" : [0.4, 0.7, -0.3, 0.0, 0.05, 0.6]
+"rl_bumper_bnds" : [-0.7, -0.4, 0.0, 0.3, 0.05, 0.6]
+"rr_bumper_bnds" : [-0.7, -0.4, -0.3, 0.0, 0.05, 0.6]
+
+"sfl_bumper_bnds" : [0.1, 0.4, 0.35, 0.6, 0.05, 0.6]
+"sfr_bumper_bnds" : [0.1, 0.4, -0.6, -0.35, 0.05, 0.6]
+"srl_bumper_bnds" : [-0.4, -0.1, 0.35, 0.6, 0.05, 0.6]
+"srr_bumper_bnds" : [-0.4, -0.1, -0.6, -0.35, 0.05, 0.6]

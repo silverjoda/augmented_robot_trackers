@@ -1,0 +1,8 @@
+Teleop node for spot: This teleop node can go fw/bw, turn and strafe, sit and stand and self right and set stairs mode.
+
+launch the launch/spot_teleop.launch file, this will launch a joy node and the spot teleop
+If you want to change any parameters go to configs/spot_teleop_config.yaml
+
+To stand/sit the robot press A, to switch between stairs and normal mode press Y (just like in the original interface)
+To self right press LB+RB+A. Pressing self right while in other modes seems to not exhibit wierd behavior.
+After every command there is a cooldown period of a few seconds

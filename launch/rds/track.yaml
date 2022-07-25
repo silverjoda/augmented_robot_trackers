@@ -1,0 +1,23 @@
+# general settings
+skipPassedWaypoints: true
+skipPassedWaypointsOnlyIfReceived: false
+publishFrequency: 10
+maxNoLocTime: 2
+waypointReachDistance: 0.5
+pathReachDistance: 0.00001
+
+# regulator settings
+linVelocPkonst: 0.9
+linVelocMax: 0.6
+angVelocPkonst: 0.8
+angVelocMax: 15
+angOnlyTreshold: 30
+backwardSymmetricLaw: true
+
+adaptiveHorizon: true
+adaLowerBound: 0.6
+adaMultiplier: 0.5
+adaMultiplier2: 1.0
+
+maxAcceleration: 0.25
+maxDecceleration: 4.0

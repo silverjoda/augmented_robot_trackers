@@ -1,0 +1,33 @@
+"ros_rate" : 10
+"root_frame" : "map"
+"robot_prefix" : ""
+"enable_flippers" : True
+
+# Flippers state - position dictionary
+"FLIPPERS_NEUTRAL" : [-2, -2, 1.5, 1.5]
+"FLIPPERS_ASCENDING_FRONT" : [-0.8, -0.8, 0.0, 0.0]
+"FLIPPERS_ASCENDING_REAR" : [0.1, 0.1, -0.6, -0.6]
+"FLIPPERS_DESCENDING_FRONT" : [0.35, 0.35, -0.7, -0.7]
+"FLIPPERS_DESCENDING_REAR" : [-0.3, -0.3, 0.4, 0.4]
+<<<<<<< HEAD
+"FLIPPERS_UP_STAIRS" : [-0.1, -0.1, -0.1, -0.1]
+"FLIPPERS_DOWN_STAIRS" : [0.0, 0.0, 0.0, 0.0]
+=======
+"FLIPPERS_UP_STAIRS" : [-0.1, -0.1, 0.1, 0.1]
+"FLIPPERS_DOWN_STAIRS" : [0, 0, 0.05, 0.05]
+>>>>>>> bf35b9f9db911efa610c8f3daa1c80d9a381fc08
+
+# Flippers state - current dictionary
+"FLIPPERS_CURRENT_NEUTRAL" : [3, 3] # front, rear
+"FLIPPERS_CURRENT_ASCENDING_FRONT" : [3, 2] # [40, 20]
+"FLIPPERS_CURRENT_ASCENDING_REAR" : [2, 3] #[20, 40]
+"FLIPPERS_CURRENT_DESCENDING_FRONT" : [2, 3] # [20, 15]
+"FLIPPERS_CURRENT_DESCENDING_REAR" : [2, 2] #[15, 15]
+"FLIPPERS_CURRENT_UP_STAIRS" : [2, 2]
+"FLIPPERS_CURRENT_DOWN_STAIRS" : [2, 2]
+
+"roll_stabilization_p" : 1.4
+"roll_stabilization_d" : 0.0
+"enable_flipper_stabilization" : True
+
+

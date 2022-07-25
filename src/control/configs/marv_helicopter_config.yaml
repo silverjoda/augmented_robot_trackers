@@ -1,0 +1,9 @@
+"node_name" : "art_marv_flailer"
+"ros_rate" : 10
+"tf_buffer_size" : 10
+"root_frame" : "map"
+"robot_prefix" : "X1/"
+"max_tracks_velocity" : 1.5
+"max_flippers_velocity" : 5.5
+"max_flippers_dev" : 0.5
+"flipper_step_constant" : 0.05

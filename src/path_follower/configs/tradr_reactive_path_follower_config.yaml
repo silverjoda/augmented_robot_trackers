@@ -1,0 +1,11 @@
+"root_frame" : "map"
+"tracker_momentum_vel_x_increment" : 0.05
+"tracker_momentum_vel_x_decrement" : 0.15
+"waypoint_reach_dist" : 2
+"bidirectional_tracking" : False
+"turn_vel_sensitivity" : 1.5
+"lin_vel_sensitivity" : 3
+"turn_vel_thresh" : 4.0
+"turn_inhibition_sensitivity" : 1
+"cmd_vel_lin_clip" : 0.6
+"cmd_vel_ang_clip" : 0.8

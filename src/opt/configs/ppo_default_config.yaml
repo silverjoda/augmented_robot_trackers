@@ -1,0 +1,18 @@
+"algo_name" : "PPO"
+"policy_name" : "MlpPolicy" # "MlpLstmPolicy", "MlpPolicy"
+"default_session_ID" :
+"n_envs" : 6
+"gamma" : 0.99
+"n_steps" : 10
+"vf_coef" : 0.5
+"ent_coef" : 0.0
+"max_grad_norm" : 0.5
+"learning_rate" : 0.0001
+"alpha" : 0.99
+"epsilon" : 0.00001
+"verbose" : 1
+"full_tensorboard_log" : False
+"policy_lastlayer_tanh" : False
+"policy_hid_dim" : 256
+"policy_grad_clip_value" : 1.0
+"policy_residual_connection" : False

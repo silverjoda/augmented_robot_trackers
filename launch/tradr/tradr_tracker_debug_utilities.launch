@@ -1,0 +1,15 @@
+<launch>
+    <arg name="launch_tracker" default="true" doc="Set false if you want to run the tracker separately"/>
+    <param name="use_sim_time" type="bool" value="true" />
+    
+<!-- <node pkg="augmented_robot_trackers" type="marv_tradr_translator.py" name="marv_tradr_translator" output="screen" /> -->
+    <node pkg="augmented_robot_trackers" type="bl_zrp_frame_publisher.py" name="bl_zrp_frame_publisher" output="screen" />
+    <node pkg="tf2_ros" type="static_transform_publisher" name="base_link_rev_publisher" args="0 0 0 0 0 1 0 base_link base_link_rev" output="screen" />
+    <node pkg="tf2_ros" type="static_transform_publisher" name="base_link_zrp_rev_publisher" args="0 0 0 0 0 1 0 base_link_zrp base_link_zrp_rev" output="screen" />
+    <node pkg="augmented_robot_trackers" type="dummy_path_publisher.py" name="dummy_path_publisher" output="screen" /> 
+    
+    <group if="$(arg launch_tracker)">
+    	<node pkg="augmented_robot_trackers" type="marv_tracker.py" name="marv_tracker" output="screen" />
+    </group>
+
+</launch>

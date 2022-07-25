@@ -1,0 +1,5 @@
+# ROS topic names
+"node_name" : "timesync_checker"
+"server_hostname" : "husky-robot"
+"server_ip" : "192.168.2.120"
+"rate_rate" : 0.1

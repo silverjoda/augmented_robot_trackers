@@ -1,0 +1,4 @@
+#!/bin/bash
+killall -9 atop bwm-ng parameter_bridge subt_ros_relay rosout rosmaster ruby image_bridge optical_frame_publisher pose_tf_broadcaster roslaunch set_rate_relay subt_ws && pkill -f cras_subt && pkill -f rds && pkill -f teleop
+sleep 1
+singularity exec --nv ~/singularity_imgs/cloudsim_tracked.simg bash -c 'source ~/cras_subt/devel/setup.bash --extend; roslaunch augmented_robot_trackers gazebo_marv_singularity.launch robot_path:=$HOME/singularity_imgs/marv/ctu_cras_norlab_marv_sensor_config_1'

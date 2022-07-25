@@ -1,0 +1,9 @@
+"init_position" : [-161.3, -64.5, -8.1] # [-17.3, -111.0, -8.85]
+"init_rotation" : [0, 0, 1, 1]
+"headless_simulation" : "true"
+"sim_step_period" : 0.2
+"max_episode_steps" : 120
+"x_goal" : 3
+
+"up_stairs_position" : [-161.3, -38.5, 1.8]
+"up_stairs_rotation" : [0, 0, -0.707, 0.707]

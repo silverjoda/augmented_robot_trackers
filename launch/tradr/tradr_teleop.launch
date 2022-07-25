@@ -1,0 +1,11 @@
+<launch>
+    <arg name="config_name" default="marv_teleop_config.yaml" />
+
+    <node pkg="joy" type="joy_node" name="joy_node" output="screen"> 
+	<param name="dev" type="string" value="/dev/input/js1" />
+    </node>
+
+    <node pkg="augmented_robot_trackers" type="marv_teleop.py" name="marv_teleop" args="$(arg config_name)" output="screen" />
+    <node pkg="augmented_robot_trackers" type="marv_tradr_translator.py" name="marv_tradr_translator" output="screen" /> 
+
+</launch>

@@ -1,0 +1,185 @@
+Marv:
+
+Publish track velocities to L /marv/cartesian_controller/cmd_vel  (msg: cmd_vel)
+
+Publish individual flipper velocities to
+/marv/flippers_velocity_controller/front_right_flipper_j/cmd_vel
+/marv/flippers_velocity_controller/front_left_flipper_j/cmd_vel
+/marv/flippers_velocity_controller/rear_right_flipper_j/cmd_vel
+/marv/flippers_velocity_controller/rear_left_flipper_j/cmd_vel
+msg: std_msgs/Float64
+
+Or collectively flipper velocities on
+
+/marv/flippers_velocity_controller/cmd_vel msg: marv_msgs/Float64MultiArray
+
+XBOX: ===================================
+axes:
+0: left_js, hor, positive left
+1: left_js, vert, positive up
+4: right_js, vert, positive up
+3: right_js, hor, positive left
+2: LT, -1 fully_pressed, 1 released
+5: RT, -1 fully_pressed, 1 released
+6: Dpad hor, 0 default, 1 left -1 right
+6: Dpad vert, 0 default, 1 up -1 down
+
+buttons: 0 not pressed, 1 pressed
+0: A
+1: B
+2: X
+3: Y
+4: LB
+5: RB
+==========================================
+
+Debugging tradr tracker on bagfile:
+1 roscore
+2 rosrun static_transform_mux static_transform_mux
+3 roslaunch nifti_robot_description load_robot_model.launch robot:=ctu (to load robot model params and then kill it)
+3 rosbag play tradr_data.bag --clock (DONT FORGET THE CLOCK IF THE SIMTIME PARAM IS SET)
+4 roslaunch augmented_robot_trackers tradr_tracker_debug_utilities.launch launch_tracker:=true
+5 rviz and load settings from repo
+
+# How to test tracker on tradr:
+# 1) launch: getIcp
+# 2) launch: roslaunch rds_map_nav tradr_default.launch net_id:=6 track:=dummy frame:=map
+# 3) launch: roslaunch augmented_robot_trackers tradr_tracker.launch
+# 4) Enable flippers through service
+
+# Refactoring plan
+1) Path processing. Current target and remaining plan publisher. Also publishes dist of target to base_link if available
+2) Robot pose dict publisher
+3) Marv flipper point cloud and feature publisher
+4) Tracker (lin+ang cmd vel)
+
+# SPOT
+Check spot batteries and open ticket if bad
+
+MARV rocket:
+- Test current setup on agent which also has priv. info to see if it makes a difference.
+- Add long term state-action buffer from which imitation state-actions are sampled (refresh dagger)
+
+BUGGY:
+- Test t265 indoors at various positions at various velocities.
+- Decide where to put t265 and print appropriate holder.
+- Test xsens with t265
+- Fix tx2, t265 and xsens to buggy
+- Try xsens + wheel speed sensor
+
+MARV:
+- Gather data of two specific obstacles and fit SM vs NN and show differences.
+- So far the dsm is perfect except that descent part.
+- Print out all transitions from dataset and from inferred policy. See if dsm learned transitions that were not in dataset also appear in dsm-d
+
+Experiments:
+
+logs_tst:
+
+sc:
+fit_score: 216/234
+vel 0.2: obstacles: 2/3, n_changes: 22
+vel 0.4: obstacles: 3/3, n_changes: 22
+
+dsm-d:
+fit_score: 176/234
+vel 0.2: obstacles: 2/3,  n_changes: 9
+vel 0.4: obstacles: 3/3, n_changes: 9
+
+dsm:
+fit_score: 217/234
+vel 0.2: obstacles: 3/3,  n_changes: 11
+vel 0.4: obstacles: 3/3,  n_changes: 11
+
+pallet_tst:
+
+sc:
+fit_score: 216/258
+vel 0.2: obstacles: 1/3, n_changes: 20
+vel 0.4: obstacles: 3/3, n_changes: 19
+
+dsm-d:
+fit_score: 215/258
+vel 0.2: obstacles: 1/3,  n_changes: 11
+vel 0.4: obstacles: 2/3, n_changes: 12
+
+dsm:
+fit_score: 232/258
+vel 0.2: obstacles: 3/3,  n_changes: 21
+vel 0.4: obstacles: 3/3,  n_changes: 18
+
+oc_tst:
+
+sc:
+fit_score: 1529
+vel 0.2: failures: 5, n_changes: 188
+vel 0.4: failures: 2, n_changes: 158
+
+dsm-d: 1315
+fit_score:
+vel 0.2: failures: 8,  n_changes: 64
+vel 0.4: obstacles: 9, n_changes: 65
+
+dsm:
+fit_score: 1601
+vel 0.2: failures: 2,  n_changes: 125
+vel 0.4: failures: 1,  n_changes: 105
+
+# oc_trn, escape maneuvres
+Completely untraversable without escape maneuvres: 4
+Traversable under high enough velocity or at certain angles: 2
+
+# oc_trn stabilization statistics:
+Enabled: Bodyroll min: -0.330352662395, max: 0.144447550481, mean, -0.0135661087169, std: 0.0591971638428
+Disabled: Bodyroll min: -0.410137970105, max: 0.191966564331, mean, -0.0128755904897, std: 0.0644448587916
+
+# oc_tst sparse
+
+sc:
+fit_score:
+vel 0.2: failures: , n_changes:
+vel 0.4: failures: , n_changes:
+
+dsm-d:
+fit_score:
+vel 0.2: failures: ,  n_changes:
+vel 0.4: obstacles: , n_changes:
+
+dsm:
+fit_score:
+vel 0.2: failures: 3,  n_changes:
+vel 0.4: failures: ,  n_changes:
+
+# Rexp
+
+1)
+obst_2_bl: cum_sq_acc: (7.7), cum_ang_pitch_vel: 13.8, state_changes: 20
+obst_2_sc: cum_sq_acc: (5.6), cum_ang_pitch_vel: 13.1, state_changes: 8
+obst_2_dsm: cum_sq_acc: (5.5), cum_ang_pitch_vel: 6.1, state_changes: 9
+
+2)
+obst_5_bl:  cum_sq_acc: (2.1), cum_ang_pitch_vel: 3.6, state_changes: 12, failure rate: 1/3
+obst_5_sc:  cum_sq_acc: (1.9), cum_ang_pitch_vel: 1.1, state_changes: 10
+obst_5_dsm: cum_sq_acc: (1.9), cum_ang_pitch_vel: 1.5, state_changes: 7
+
+3)
+obst_4_bl:  cum_sq_acc: (-), cum_ang_pitch_vel: -, state_changes: -, failure rate: 2/3
+obst_4_sc:  cum_sq_acc: (5.1), cum_ang_pitch_vel: 14.1, state_changes: 14
+obst_4_dsm: cum_sq_acc: (6.2), cum_ang_pitch_vel: 5.4, state_changes: 7
+
+4)
+obst_3_bl:  cum_sq_acc: (2.8), cum_ang_pitch_vel: 2.9, state_changes: 11
+obst_3_sc:  cum_sq_acc: (2.3), cum_ang_pitch_vel: 5.0, state_changes: 12
+obst_3_dsm: cum_sq_acc: (1.8), cum_ang_pitch_vel: 3.3, state_changes: 9
+
+5)
+obst_1_bl: cum_sq_acc:  (6.6), cum_ang_pitch_vel: 7.0, state_changes: 22
+obst_1_sc: cum_sq_acc:  (2.2), cum_ang_pitch_vel: 7.1, state_changes: 12
+obst_1_dsm:cum_sq_acc:  (1.51), cum_ang_pitch_vel: 3.5, state_changes: 8
+
+# Tst mlp vs reimp
+tst_course:
+reimp lin no-mods: fit: 0.52, n_failures: 30/32, n_changes: 187 (unusable)
+reimp non-lin no-mods fit: 0.83, n_failures: 19/32, n_changes: 394 (unusable)
+reimp non-lin: fit: 0.83: n_failures: 9/32, n_changes: 401
+

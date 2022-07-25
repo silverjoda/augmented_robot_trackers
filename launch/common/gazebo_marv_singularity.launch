@@ -1,0 +1,33 @@
+<launch>
+    <arg name="robot" default="marv" doc="marv,spot,husky,lily,absolem,marmotte,x500" />
+    <arg name="robot_name" default="X1" />
+    <arg name="software_rendering" default="false" doc="Set to false if your GPU can do OpenGL 3.3" />
+    <arg name="gui" default="true" />
+    <arg name="real_time_factor" default="3.0" />
+
+    <arg name="robot_path" default="$(find ctu_cras_norlab_marv_sensor_config_1)" />
+
+    <env name="LANG" value="C" />
+    <env name="LC_ALL" value="C" />
+
+    <node name="server" pkg="rosdevday_cloud_filtering" type="xvfb-run" args="-a ign launch -v4 $(arg robot_path)/launch/example.ign robotName:=$(arg robot_name) headless:=true ros:=true" if="$(arg software_rendering)" />
+    <node name="server" pkg="rosdevday_cloud_filtering" type="ign" args="launch -v4 $(arg robot_path)/launch/example.ign robotName:=$(arg robot_name) base_dir:=~/singularity_imgs/marv/ctu_cras_norlab_marv_sensor_config_1 headless:=true ros:=true" unless="$(arg software_rendering)" output="screen" /> 
+
+    <node name="gui" pkg="rosdevday_cloud_filtering" type="gui" if="$(arg gui)" respawn="true" />
+    <node name="set_rtf" pkg="rosdevday_cloud_filtering" type="ign" args="service -s /world/example/set_physics --reqtype ignition.msgs.Physics --reptype ignition.msgs.Boolean --timeout 100000 --req 'real_time_factor: $(arg real_time_factor)'" />
+
+    <group ns="$(arg robot_name)">
+        <node name="set_rate_omni_camera_0" pkg="rosservice" type="rosservice" args="call --wait omni/camera_0/set_rate 'rate: 0.0001'" />
+        <node name="set_rate_omni_camera_1" pkg="rosservice" type="rosservice" args="call --wait omni/camera_1/set_rate 'rate: 0.0001'" />
+        <node name="set_rate_omni_camera_2" pkg="rosservice" type="rosservice" args="call --wait omni/camera_2/set_rate 'rate: 0.0001'" />
+        <node name="set_rate_omni_camera_3" pkg="rosservice" type="rosservice" args="call --wait omni/camera_3/set_rate 'rate: 0.0001'" />
+        <node name="set_rate_omni_camera_4" pkg="rosservice" type="rosservice" args="call --wait omni/camera_4/set_rate 'rate: 0.0001'" />
+        <node name="set_rate_front" pkg="rosservice" type="rosservice" args="call --wait front/set_rate 'rate: 0.0001'" />
+        <node name="set_rate_rear" pkg="rosservice" type="rosservice" args="call --wait rear/set_rate 'rate: 0.0001'" />
+        <node name="set_rate_cliff_front_left" pkg="rosservice" type="rosservice" args="call --wait front_left_cliff_scan/set_rate 'rate: 0.0001'" />
+        <node name="set_rate_cliff_front_right" pkg="rosservice" type="rosservice" args="call --wait front_right_cliff_scan/set_rate 'rate: 0.0001'" />
+        <node name="set_rate_cliff_rear_left" pkg="rosservice" type="rosservice" args="call --wait rear_left_cliff_scan/set_rate 'rate: 0.0001'" />
+        <node name="set_rate_cliff_rear_right" pkg="rosservice" type="rosservice" args="call --wait rear_right_cliff_scan/set_rate 'rate: 0.0001'" />
+    </group>
+
+</launch>

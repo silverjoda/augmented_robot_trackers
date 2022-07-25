@@ -1,0 +1,11 @@
+<launch>
+    <remap from="X1/points" to="points_filtered" />
+    <remap from="nav/cmd_vel_tar" to="cmd_vel_from_naex_tracker" />
+    <remap from="X1/cmd_vel" to="teleop_joy/cmd_vel" />
+    <!-- <remap from="nav/cmd_vel" to="cmd_vel_desired_speed" />  -->
+    <!-- <remap from="bumpers_vis" to="" /> -->
+
+    <!--<node pkg="tf2_ros" type="static_transform_publisher" name="stp_world_circuit" args="0 0 0 0 0 0 1 map world" output="screen" />-->
+    <node pkg="augmented_robot_trackers" type="virtual_bumper_tradr_sys.py" name="virtual_bumper_tradr" />
+
+</launch>

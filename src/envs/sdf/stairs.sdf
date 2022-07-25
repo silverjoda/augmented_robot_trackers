@@ -1,0 +1,308 @@
+<sdf version='1.7'>
+  <world name='example'>
+    <physics name='4ms' type='dart'>
+      <max_step_size>0.004</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+    <scene>
+      <ambient>0.2 0.2 0.2 1</ambient>
+      <background>0.8 0.8 0.8 1</background>
+      <shadows>1</shadows>
+    </scene>
+    <light name='sun' type='directional'>
+      <cast_shadows>1</cast_shadows>
+      <pose>0 0 10 0 -0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.8 0.8 0.8 1</specular>
+      <attenuation>
+        <range>1</range>
+        <constant>0.9</constant>
+        <linear>1</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>0 0 -1</direction>
+      <spot>
+        <inner_angle>0</inner_angle>
+        <outer_angle>0</outer_angle>
+        <falloff>0</falloff>
+      </spot>
+    </light>
+    <light name='light1' type='point'>
+      <pose>0 0 4 0 -0 0</pose>
+      <attenuation>
+        <range>1000</range>
+        <linear>0</linear>
+        <constant>0.1</constant>
+        <quadratic>0.005</quadratic>
+      </attenuation>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.8 0.8 0.8 1</specular>
+      <spot>
+        <inner_angle>5</inner_angle>
+        <outer_angle>10.1</outer_angle>
+        <falloff>0.1</falloff>
+      </spot>
+      <direction>0 0 -1</direction>
+    </light>
+    <light name='light2' type='spot'>
+      <pose>0 0 4 0 -0 0</pose>
+      <attenuation>
+        <range>1000</range>
+        <linear>0.1</linear>
+        <constant>0.2</constant>
+        <quadratic>0.005</quadratic>
+      </attenuation>
+      <diffuse>0.8 0.8 0.5 1</diffuse>
+      <specular>0.8 0.8 0.5 1</specular>
+      <spot>
+        <inner_angle>5</inner_angle>
+        <outer_angle>10.1</outer_angle>
+        <falloff>0.1</falloff>
+      </spot>
+      <direction>0 0 -1</direction>
+    </light>
+    <gravity>0 0 -9.8</gravity>
+    <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
+    <atmosphere type='adiabatic'/>
+    <plugin name='__default__' filename='__default__'/>
+    <include>
+      <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/subt_tunnel_staging_area</uri>
+      <name>staging_area</name>
+      <pose>0 0 0 0 0 0</pose>
+    </include>
+
+
+    <model name='stairs_updown'>
+    <pose frame=''>3 0 0 0 0 1.5708</pose>
+    <link name='Stairs_2'>
+      <visual name='Stairs_2_Visual_0'>
+        <pose frame=''>0.001875 1.61963 0.08 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>1.5 0.26 0.16</size>
+          </box>
+        </geometry>
+
+        <meta>
+          <layer>0</layer>
+        </meta>
+      </visual>
+      <collision name='Stairs_2_Collision_0'>
+        <geometry>
+          <box>
+            <size>1.5 0.26 0.16</size>
+          </box>
+        </geometry>
+        <pose frame=''>0.001875 1.61963 0.08 0 -0 0</pose>
+      </collision>
+      <visual name='Stairs_2_Visual_1'>
+        <pose frame=''>0.001875 1.35963 0.24 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>1.5 0.26 0.16</size>
+          </box>
+        </geometry>
+
+        <meta>
+          <layer>0</layer>
+        </meta>
+      </visual>
+      <collision name='Stairs_2_Collision_1'>
+        <geometry>
+          <box>
+            <size>1.5 0.26 0.16</size>
+          </box>
+        </geometry>
+        <pose frame=''>0.001875 1.35963 0.24 0 -0 0</pose>
+      </collision>
+      <visual name='Stairs_2_Visual_2'>
+        <pose frame=''>0.001875 1.09963 0.4 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>1.5 0.26 0.16</size>
+          </box>
+        </geometry>
+
+        <meta>
+          <layer>0</layer>
+        </meta>
+      </visual>
+      <collision name='Stairs_2_Collision_2'>
+        <geometry>
+          <box>
+            <size>1.5 0.26 0.16</size>
+          </box>
+        </geometry>
+        <pose frame=''>0.001875 1.09963 0.4 0 -0 0</pose>
+      </collision>
+      <visual name='Stairs_2_Visual_3'>
+        <pose frame=''>0.001875 0.839625 0.56 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>1.5 0.26 0.16</size>
+          </box>
+        </geometry>
+
+        <meta>
+          <layer>0</layer>
+        </meta>
+      </visual>
+      <collision name='Stairs_2_Collision_3'>
+        <geometry>
+          <box>
+            <size>1.5 0.26 0.16</size>
+          </box>
+        </geometry>
+        <pose frame=''>0.001875 0.839625 0.56 0 -0 0</pose>
+      </collision>
+      <visual name='Stairs_2_Visual_4'>
+        <pose frame=''>0.001875 0.579625 0.72 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>1.5 0.26 0.16</size>
+          </box>
+        </geometry>
+
+        <meta>
+          <layer>0</layer>
+        </meta>
+      </visual>
+      <collision name='Stairs_2_Collision_4'>
+        <geometry>
+          <box>
+            <size>1.5 0.26 0.16</size>
+          </box>
+        </geometry>
+        <pose frame=''>0.001875 0.579625 0.72 0 -0 0</pose>
+      </collision>
+    </link>
+    <link name='Stairs_4'>
+      <visual name='Stairs_4_Visual_0'>
+        <pose frame=''>-0.001125 -0.050375 0.4 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>1.5 1 0.8</size>
+          </box>
+        </geometry>
+
+        <meta>
+          <layer>0</layer>
+        </meta>
+      </visual>
+      <collision name='Stairs_4_Collision_0'>
+        <geometry>
+          <box>
+            <size>1.5 1 0.8</size>
+          </box>
+        </geometry>
+        <pose frame=''>-0.001125 -0.050375 0.4 0 -0 0</pose>
+      </collision>
+    </link>
+    <link name='Stairs_7'>
+      <visual name='Stairs_7_Visual_0'>
+        <pose frame=''>-0.001875 -1.62963 0.08 0 -0 -3.14159</pose>
+        <geometry>
+          <box>
+            <size>1.5 0.24 0.16</size>
+          </box>
+        </geometry>
+
+        <meta>
+          <layer>0</layer>
+        </meta>
+      </visual>
+      <collision name='Stairs_7_Collision_0'>
+        <geometry>
+          <box>
+            <size>1.5 0.24 0.16</size>
+          </box>
+        </geometry>
+        <pose frame=''>-0.001875 -1.62963 0.08 0 -0 -3.14159</pose>
+      </collision>
+      <visual name='Stairs_7_Visual_1'>
+        <pose frame=''>-0.001875 -1.38963 0.24 0 -0 -3.14159</pose>
+        <geometry>
+          <box>
+            <size>1.5 0.24 0.16</size>
+          </box>
+        </geometry>
+
+        <meta>
+          <layer>0</layer>
+        </meta>
+      </visual>
+      <collision name='Stairs_7_Collision_1'>
+        <geometry>
+          <box>
+            <size>1.5 0.24 0.16</size>
+          </box>
+        </geometry>
+        <pose frame=''>-0.001875 -1.38963 0.24 0 -0 -3.14159</pose>
+      </collision>
+      <visual name='Stairs_7_Visual_2'>
+        <pose frame=''>-0.001875 -1.14962 0.4 0 -0 -3.14159</pose>
+        <geometry>
+          <box>
+            <size>1.5 0.24 0.16</size>
+          </box>
+        </geometry>
+
+        <meta>
+          <layer>0</layer>
+        </meta>
+      </visual>
+      <collision name='Stairs_7_Collision_2'>
+        <geometry>
+          <box>
+            <size>1.5 0.24 0.16</size>
+          </box>
+        </geometry>
+        <pose frame=''>-0.001875 -1.14962 0.4 0 -0 -3.14159</pose>
+      </collision>
+      <visual name='Stairs_7_Visual_3'>
+        <pose frame=''>-0.001875 -0.909625 0.56 0 -0 -3.14159</pose>
+        <geometry>
+          <box>
+            <size>1.5 0.24 0.16</size>
+          </box>
+        </geometry>
+
+        <meta>
+          <layer>0</layer>
+        </meta>
+      </visual>
+      <collision name='Stairs_7_Collision_3'>
+        <geometry>
+          <box>
+            <size>1.5 0.24 0.16</size>
+          </box>
+        </geometry>
+        <pose frame=''>-0.001875 -0.909625 0.56 0 -0 -3.14159</pose>
+      </collision>
+      <visual name='Stairs_7_Visual_4'>
+        <pose frame=''>-0.001875 -0.669625 0.72 0 -0 -3.14159</pose>
+        <geometry>
+          <box>
+            <size>1.5 0.24 0.16</size>
+          </box>
+        </geometry>
+
+        <meta>
+          <layer>0</layer>
+        </meta>
+      </visual>
+      <collision name='Stairs_7_Collision_4'>
+        <geometry>
+          <box>
+            <size>1.5 0.24 0.16</size>
+          </box>
+        </geometry>
+        <pose frame=''>-0.001875 -0.669625 0.72 0 -0 -3.14159</pose>
+      </collision>
+    </link>
+    <static>1</static>
+  </model>
+
+  </world>
+</sdf>

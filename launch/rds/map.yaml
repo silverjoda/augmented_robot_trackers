@@ -1,0 +1,52 @@
+# Map parameters of the mapping and exploration
+
+map_resolution: 0.05
+map_verticalStep: 1.5 # 1.5
+map_size: 3.0
+
+rob_center_height: -0.6
+rob_height: 1
+rob_radius: 0.298 # 0.33 default
+rob_radius_slope: -5
+rob_margin: 0.12 # 0.3 default
+rob_maxSlope: 12.0
+rob_avgVel: 0.4
+rob_track_margins_enable: false
+
+targets_cluster_radius: 5.0
+targets_cluster_min_inf: 60
+targets_inf_free: 1.0
+targets_inf_front: 12.0
+targets_observe_free_dist: 5.0
+targets_observe_front_dist: 1.4
+targets_black_expli_dist: 2.0
+targets_max_viewpoints: 2
+targets_cover_by_topo_dist: 1.0
+targets_profiling: false
+
+stuck_no_move_check_time: 10.0
+stuck_min_traveled_dist: 0.4
+stuck_min_turn_angle: 15
+stuck_untrav_escape_dist: 2.8
+stuck_profiling: false
+
+mre_mode: tier3
+mre_dta_max_consider_dist: 4.0
+
+cost_mixDiff: 0.0
+cost_occ_val: 1.5
+cost_decrement: 0.1
+cost_height_diff_enable: true
+cost_height_diff_scale: 1.6
+
+topo_build_dist: 0.4
+topo_max_connect_dist: 1.0
+
+mission_wait_time: 4.0
+mission_reselect_target_time: 12.0
+mission_trigger_path_percentage: 0.6
+mission_long_path_len: 20.0
+mission_long_path_reselect_travel: 5.0
+mission_profiling: false
+
+

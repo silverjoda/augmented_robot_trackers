@@ -1,0 +1,7 @@
+<launch>
+    <node pkg="tf" type="static_transform_publisher" name="base_link_reverser" args="0 0 0 0 0 3.14159 /base_link /base_link_rev 100"/>
+    <node pkg="tf" type="static_transform_publisher" name="base_link_zrp_reverser" args="0 0 0 0 0 3.14159 /base_link_zrp /base_link_zrp_rev 100"/>
+    <node pkg="augmented_robot_trackers" type="bl_zrp_frame_publisher.py" name="bl_zrp_frame_publisher" output="screen" />
+    <node pkg="augmented_robot_trackers" type="marv_tracker.py" name="art_marv_tracker" output="screen" />
+    <node pkg="augmented_robot_trackers" type="marv_tradr_translator.py" name="art_marv_tradr_translator" output="screen" />
+</launch>

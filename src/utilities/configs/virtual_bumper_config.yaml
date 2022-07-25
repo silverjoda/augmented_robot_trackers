@@ -1,0 +1,41 @@
+# Ros params
+"laser_topic" : "os_cloud_node/points"
+"cmd_vel_in_topic" : "joy_teleop/cmd_vel"
+"cmd_vel_out_topic" : "husky_velocity_controller/cmd_vel"
+"bumpers_topic" : "bumpers_vis"
+"base_link_frame_id" : "base_link"
+"node_name" : "virtual_bumper"
+"tf_buffer_size" : 10
+"cmd_vel_timeout" : 0.2
+"laser_timeout" : 1
+"ros_rate" : 20
+"bumper_bypass" : False
+"publish_bumpers" : True
+
+# Behavioral params
+"bumper_detection_points_threshold" : 10 # If more than this many points, bumper is detected
+"stale_laser_vel_val" : 0.2 # If laser data is stale then vel will be limited by this value
+
+# Static barrier
+"static_barrier_increment" : 0.01
+"static_barrier_decrement" : 0.03
+"static_barrier_minimum" : 0.5
+
+# Dynamic barrier
+"dynamic_barrier_increment" : 0.02
+"dynamic_barrier_decrement" : 0.05
+"dynamic_barrier_lb" : 0.2
+
+# Bumper region definitions
+"bumper_z_range" : [0.15, 0.5] # TODO: !!!Potential problem here when climbing over obstacles, either use imu correction or transform pc to zrp frame!!!
+"velocity_scale_factor" : 4.
+
+"fl_bumper_bnds" : [0.4, 0.55, 0.0, 0.35, 0.1, 0.5]
+"fr_bumper_bnds" : [0.4, 0.55, -0.35, 0.0, 0.1, 0.5]
+"rl_bumper_bnds" : [-0.55, -0.4, 0.0, 0.35, 0.1, 0.5]
+"rr_bumper_bnds" : [-0.55, -0.4, -0.35, 0.0, 0.1, 0.5]
+
+"sfl_bumper_bnds" : [0.0, 0.4, 0.3, 0.35, 0.1, 0.5]
+"sfr_bumper_bnds" : [0.0, 0.4, -0.35, -0.3, 0.1, 0.5]
+"srl_bumper_bnds" : [-0.4, 0.0, 0.3, 0.35, 0.1, 0.5]
+"srr_bumper_bnds" : [-0.4, 0.0, -0.35, -0.3, 0.1, 0.5]

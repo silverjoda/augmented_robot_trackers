@@ -1,0 +1,6 @@
+<launch>
+    <node pkg="augmented_robot_trackers" type="marv_sim_translator.py" name="marv_sim_translator" output="screen" />
+    <node pkg="augmented_robot_trackers" type="bl_zrp_frame_publisher.py" name="bl_zrp_frame_publisher" output="screen" />
+    <node pkg="tf2_ros" type="static_transform_publisher" name="base_link_rev_publisher" args="0 0 0 0 0 1 0 X1/base_link X1/base_link_rev" output="screen" />
+    <node pkg="tf2_ros" type="static_transform_publisher" name="base_link_zrp_rev_publisher" args="0 0 0 0 0 1 0 X1/base_link_zrp X1/base_link_zrp_rev" output="screen" />
+</launch>

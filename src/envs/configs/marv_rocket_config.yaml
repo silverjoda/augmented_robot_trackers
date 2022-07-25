@@ -1,0 +1,4 @@
+"max_steps" : 50
+"ros_rate" : 20
+"tf_buffer_size" : 10
+"flipper_action_scalar" : 1.

@@ -1,0 +1,22 @@
+# ROS topic names
+"ros_rate" : 10
+"root_frame" : "map"
+"robot_prefix" : "" # X1/
+
+# Flippers
+"enable_flippers" : True
+"mode" : "reimp" # differentiable_detached_sm/bbx_sm/differentiable_sm/differentiable_detached_sm/state_classification/neutral/random/
+"data_dir_name" : "sm_reimp_tradr"
+"linear" : False
+"feat_vec_dim" : 9
+"theta_delta_thresh_neutral" : 0.3
+"temporarily_block_cmd_upon_descent" : True
+"tracker_burn_in_time" : 2
+
+# State vel scalars
+"ascending_vel_factor" : 0.5
+"descending_vel_factor" : 0.3
+"rough_terrain_vel_factor" : 0.7
+"stairs_vel_factor" : 1
+
+

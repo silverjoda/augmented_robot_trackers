@@ -1,0 +1,6 @@
+<launch>
+    <arg name="map_frame" default="world" />
+    <arg name="base_link_frame" default="X1/base_link" />
+
+    <node pkg="augmented_robot_trackers" type="bl_zrp_frame_publisher.py" name="bl_zrp_frame_publisher" output="screen" />
+</launch>

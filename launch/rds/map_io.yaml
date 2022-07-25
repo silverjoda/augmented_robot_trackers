@@ -1,0 +1,68 @@
+# general IO settings
+# --------------------------- OUTPUT settings ---------------------------
+output_count: 2
+
+# output 0
+out0_freq: 2.0
+out0_features_enabled: false
+out0_features_radius: 1.0
+out0_features_min_valids: 5 
+out0_colormap_enabled: false
+out0_time_stats_enable: false
+out0_circle_view: false
+
+# output 1
+out1_freq: 0.10
+out1_minimal_enabled: true
+out1_maxrad: 5.0
+out1_maxvert: 2.0
+
+# output 2
+out2_freq: 1.0
+out2_features_enabled: true
+out2_features_radius: 0.3
+out2_features_min_valids: 5 
+
+
+# --------------------------- INPUT settings ---------------------------
+
+# basic input stuff
+in0_pcd_skip_step: 1
+in0_pcd_point_skip_step: 1 # not enabled now
+in0_pcd_transform_enable: false
+in0_pcd_unsync_enable: true
+
+# box cut
+in0_pcd_cut_rect_enable: false
+in0_pcd_cut_xmin: -100
+in0_pcd_cut_ymin: -100
+in0_pcd_cut_zmin: -100
+in0_pcd_cut_xmax: 100
+in0_pcd_cut_ymax: 100
+in0_pcd_cut_zmax: 100
+
+# range cut
+in0_pcd_cut_range_enable: false
+in0_pcd_cut_range_min: 1.0
+in0_pcd_cut_range_max: 6
+
+# cylinder cut
+in0_pcd_cut_rangez_enable: true
+in0_pcd_cut_range_vert: 1.5
+
+# fusion
+in0_fuse_bayes_enable: true
+in0_fuse_kalm_var2a: 0.05
+in0_fuse_kalm_var2b: 0.05
+
+in0_fill_index: 8
+in0_fill_factor: 10
+
+# out
+in0_time_stats_enable: false
+
+in0_ella_enable: true
+in0_ella_k: 0.9
+in0_ella_max: 0.2
+in0_ella_avth: 0.2
+

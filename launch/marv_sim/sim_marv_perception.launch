@@ -1,0 +1,4 @@
+<launch>
+    <node pkg="augmented_robot_trackers" type="bl_zrp_frame_publisher.py" name="bl_zrp_frame_publisher" output="screen" />
+    <node pkg="augmented_robot_trackers" type="marv_feature_processor.py" name="marv_feature_processor" output="screen" />
+</launch>

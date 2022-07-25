@@ -1,0 +1,15 @@
+<launch>
+    <arg name="config_name" default="tradr_sim_teleop_config.yaml" />
+    <arg name="worldName" default="cave_circuit_practice_01" />
+    <arg name="enable_tradr_sim_translator" default="true" />
+
+    <remap from="/tradr/joy/cmd_vel" to="/X1/cmd_vel"/>
+    
+    <node pkg="joy" type="joy_node" name="joy_node" output="screen"> 
+	<param name="default_trig_val" type="bool" value="true" />
+    </node>
+
+    <node pkg="augmented_robot_trackers" type="tradr_teleop.py" name="tradr_teleop" args="$(arg config_name)" output="screen" />
+    <node pkg="augmented_robot_trackers" type="tradr_sim_translator.py" name="tradr_sim_translator" output="screen" if="$(arg enable_tradr_sim_translator)"/>
+    
+</launch>

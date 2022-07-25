@@ -1,0 +1,18 @@
+"node_name" : "art_tradr_teleop"
+"control_mode" : "basic" # basic/semi/full/waypoints
+"ros_rate" : 10
+"tf_buffer_size" : 10
+"joy_in_topic" : "joy"
+"flippers_state_in_topic" : "flippers_state"
+"cmd_vel_ub_out" : "tradr/cmd_vel_ub"
+"joy_plan_out" : "art/joy_plan"
+"root_frame" : "map"
+"robot_prefix" : "X1/"
+"flipper_position_integration_constant" : 0.22 # 0.07
+"joy_plan_n_waypoints" : 10
+"joy_plan_waypoints_gap" : 0.15
+"joy_plan_waypoints_reach" : 1.5
+"joy_plan_waypoints_curvature" : 0.08
+"max_tracks_velocity" : 0.8
+"max_flippers_velocity" : 5.5
+"max_flippers_dev" : 0.5

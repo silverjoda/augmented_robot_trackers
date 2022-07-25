@@ -1,0 +1,75 @@
+<launch>
+    <arg name="robot" default="X1" />
+    <arg name="enable_teleop" default="true" />
+    <arg name="enable_filters" default="true" />
+    <arg name="enable_odometry" default="true" />
+    <arg name="enable_mapping" default="true" />
+    <arg name="enable_dense_mapping" default="false" />
+    <arg name="enable_rds" default="true" />
+    <arg name="enable_path_follower" default="false" />
+    <arg name="enable_flipper_controller" default="false" />
+    <arg name="enable_flipper_modulator" default="true" />
+    <arg name="enable_static_path" default="true" />
+    <arg name="enable_feature_processor" default="true" />
+    <arg name="enable_marv_sim_translator" default="true" />
+    <arg name="enable_rviz" default="true" />
+
+    <node pkg="tf2_ros" type="static_transform_publisher" name="stp_world_circuit" args="0 0 0 0 0 0 1 map world" output="screen" />
+    <!--<node pkg="tf2_ros" type="static_transform_publisher" name="bl_floor_publisher" args="0 0 -0.1 0 0 0 1 X1/base_link X1/base_link_floor" output="screen" /> -->
+    <node pkg="augmented_robot_trackers" type="bl_zrp_frame_publisher.py" name="bl_zrp_frame_publisher" />
+    
+    <!-- Laser filters -->
+    <include file="$(find augmented_robot_trackers)/launch/marv_sim/sim_marv_filters.launch" if="$(arg enable_filters)" />
+
+    <!-- Ekf odometry -->
+    <include file="$(find augmented_robot_trackers)/launch/marv_sim/sim_marv_odom.launch" if="$(arg enable_odometry)"/>
+
+    <!-- Teleop -->
+    <include file="$(find augmented_robot_trackers)/launch/marv_sim/sim_marv_teleop.launch" if="$(arg enable_teleop)" >
+      	<arg name="enable_marv_sim_translator" value="false"/>
+    </include>
+
+    <!-- Localisation and mapping -->
+    <include file="$(find marv_mapping)/launch/realtime_mapping.launch" if="$(arg enable_mapping)"/>'
+
+    <!-- Dense mapper -->
+    <include file="$(find norlab_dense_mapper_ros)/launch/marv_sim_mapper.launch" if="$(arg enable_dense_mapping)"/>
+    
+    <!-- RDS -->
+    <include file="$(find augmented_robot_trackers)/launch/marv_sim/sim_marv_rds.launch" if="$(arg enable_rds)"/>
+
+    <!-- Path follower -->
+    <group if="$(arg enable_path_follower)">
+        <node pkg="augmented_robot_trackers" type="path_follower.py" name="path_follower" />
+    </group>
+
+    <!-- Flipper controller -->
+    <group if="$(arg enable_flipper_controller)">
+        <node pkg="augmented_robot_trackers" type="marv_flipper_controller.py" name="flipper_controller" />
+    </group>
+
+    <!-- Flipper modulator -->
+    <group if="$(arg enable_flipper_modulator)">
+        <node pkg="augmented_robot_trackers" type="marv_flipper_modulator.py" name="flipper_modulator" />
+    </group>
+
+    <!-- Static path -->
+    <group if="$(arg enable_static_path)">
+        <node pkg="augmented_robot_trackers" type="static_path_generator.py" name="static_path_generator" />
+    </group>
+
+    <!-- Feature processor -->
+    <group if="$(arg enable_feature_processor)">
+        <node pkg="augmented_robot_trackers" type="marv_feature_processor.py" name="marv_feature_processor" />
+    </group>
+    
+    <!-- Sim marv translator -->
+    <group if="$(arg enable_marv_sim_translator)">
+	    <node pkg="augmented_robot_trackers" type="marv_sim_translator.py" name="marv_sim_translator" output="screen" />
+    </group>
+
+    <group if="$(arg enable_rviz)">
+        <node launch-prefix="nice" pkg="rviz" type="rviz" name="rviz" args="-d $(find augmented_robot_trackers)/rviz_cfg/sim_marv_tracker_debug.rviz" output="screen" />
+    </group>
+
+</launch>

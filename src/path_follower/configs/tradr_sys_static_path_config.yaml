@@ -1,0 +1,16 @@
+"root_frame" : "map"
+"robot_prefix" : ""
+"tf_buffer_size" : 10
+"waypoint_reach_dist" : 0.5
+"waypoint_gap" : 0.1
+"course" : "tradr" # trn/tst/obst/tradr
+
+"rough_waypoint_list_tradr" : [
+                              [0,0,0.1],
+                              [1,0,0.2],
+                               [2,0,0.3],
+                               [3,0,0.3],
+                               [4.0,0,0.2],
+                               [5.5,0,0.2],
+                               ]
+

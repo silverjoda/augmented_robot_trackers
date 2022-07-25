@@ -1,0 +1,15 @@
+<launch>
+    <arg name="robot" default="X1" />
+    <arg name="rate" default="1.0" />
+    <arg name="tf_prefix" value="$(arg robot)/" if="$(eval robot != '')" />
+
+
+    <group ns="$(arg robot)">
+        <node name="laser_filter" pkg="sensor_filters" type="pointcloud2_filter_chain" required="true">
+            <rosparam command="load" file="$(find rosdevday_cloud_filtering)/config/absolem_filters.yaml" subst_value="true" />
+
+            <remap from="~input" to="points" />
+            <remap from="~output" to="points_filtered" />
+        </node>
+    </group>
+</launch>

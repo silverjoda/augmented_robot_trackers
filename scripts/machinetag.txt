@@ -1,0 +1,6 @@
+Config in ssh on master, 
+subt deploy keys on master and slave,
+check that authorized keys don't exist (optional),
+ssh at least once using the special script,
+env deploy script on slavepc,  
+

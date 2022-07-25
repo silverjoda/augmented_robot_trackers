@@ -1,0 +1,18 @@
+"train" : False
+"test" : True
+"test_agent_ID" : "TRN"
+"cma_std" : 0.3
+"dsm_lr" : 0.015
+"sc_lr" : 0.005
+"dsm_iters" : 5000
+"dsm_d_iters" : 5000
+"dsm_batchsize" : 200
+"state_classifier_iters" : 16000
+"sc_batchsize" : 200
+"bbx_iters" : 5000
+"feat_vec_dim" : 9
+"linear" : False
+"weight_decay" : 0.001
+"random_mask_prob" : 0.0 # 0.6 - does not correspond to dropout rate
+"data_dir_name" : "sm_reimp"
+"modes" : ["reimp"] # handcrafted_sm/bbx_sm/differentiable_sm/differentiable_detached_sm/state_classification/neutral/random/

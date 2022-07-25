@@ -1,0 +1,22 @@
+# ROS topic names
+"root_frame" : "map"
+"robot_prefix" : "X1/"
+
+# Tracker vars
+"ros_rate" : 10
+"pc_z_median_offset" : -0.0
+
+# PC feature bounds
+"fl_flipper_feat_bnd" : [0.35, 0.7, 0.05, 0.35, -0.3, 0.4]
+"fr_flipper_feat_bnd" : [0.35, 0.7, -0.35, -0.05, -0.3, 0.4]
+"rl_flipper_feat_bnd" : [-0.4, -0.0, 0.05, 0.35, -0.3, 0.4]
+"rr_flipper_feat_bnd" : [-0.4, -0.0, -0.35, -0.05, -0.3, 0.4]
+"front_low_feat_bnd" : [0.35, 0.7, -0.35, 0.35, -0.3, 0.4]
+"front_mid_feat_bnd" : [0.35, 0.7, -0.35, 0.35, 0.4, 0.6]
+"rear_low_feat_bnd" : [-0.4, -0.0, -0.35, 0.35, -0.2, 0.3]
+"publish_pc_bnds" : True
+"n_max_intensity" : 100
+"n_max_intensity_flipper" : 42
+"max_bnd_pc_count" : 1000
+"max_pc_points" : 30000
+

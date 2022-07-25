@@ -1,0 +1,21 @@
+sp_timeout:          0.0
+sp_auto_start:       true 
+
+ap_timeout:          60.0
+ap_command:          fg
+ap_wayp_x:           100.0
+ap_wayp_y:           0.0
+ap_wayp_z:           0.0
+
+ep_timeout:          5.0
+ep_patrolling:       true
+ep_wayp_x:           0.0
+ep_wayp_y:           0.0
+ep_wayp_z:           0.0
+
+ip_timeout:          10000.0
+ip_interrupt_enable: true
+
+aug_startDelayMin: 1.0
+aug_startDelayMax: 5.0
+aug_holeFillEnable: true

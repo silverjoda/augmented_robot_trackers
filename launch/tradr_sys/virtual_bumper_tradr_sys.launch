@@ -1,0 +1,10 @@
+<launch>
+    <arg name="robot" default="ctu-robot"/>
+	
+    <node name="$(anon priority_wrapper)" pkg="nifti_teleop" type="priority_wrapper.py" if="$(eval robot == 'ctu-robot')" />
+    <node pkg="augmented_robot_trackers" type="virtual_bumper_tradr_sys.py" name="virtual_bumper_tradr_sys" output="screen"> 
+    	<remap from="virtual_bumper/cmd_vel" to="$(anon priority_wrapper)/nav/cmd_vel" /> 
+    </node>
+
+    <!-- <node pkg="augmented_robot_trackers" type="virtual_bumper_tradr_sys.py" name="virtual_bumper_tradr_sys" /> -->
+</launch>

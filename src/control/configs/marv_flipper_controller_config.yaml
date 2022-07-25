@@ -1,0 +1,41 @@
+# ROS topic names
+"ros_rate" : 10
+"root_frame" : "map"
+"robot_prefix" : "" # X1/
+
+# Flippers
+"enable_flippers" : True
+"mode" : "differentiable_sm" # differentiable_detached_sm/bbx_sm/differentiable_sm/differentiable_detached_sm/state_classification/neutral/random/
+"data_dir_name" : "sm_full_marv"
+"linear" : False
+"feat_vec_dim" : 9
+"theta_delta_thresh_neutral" : 0.3
+"temporarily_block_cmd_upon_descent" : True
+"tracker_burn_in_time" : 2
+
+# State vel scalars
+"ascending_vel_factor" : 0.5
+"descending_vel_factor" : 0.3
+"rough_terrain_vel_factor" : 0.7
+"stairs_vel_factor" : 1
+
+# Flippers state - position dictionary
+"FLIPPERS_NEUTRAL" : [-2, -2, 1.5, 1.5]
+"FLIPPERS_ROUGH_TERRAIN" : [-0.7, -0.7, 0.2, 0.2]
+"FLIPPERS_ASCENDING_FRONT" : [-0.4, -0.4, 0.0, 0.0]
+"FLIPPERS_ASCENDING_REAR" : [0.1, 0.1, -0.6, -0.6]
+"FLIPPERS_DESCENDING_FRONT" : [0.35, 0.35, -0.7, -0.7]
+"FLIPPERS_DESCENDING_REAR" : [-0.3, -0.3, 0.4, 0.4]
+"FLIPPERS_UP_STAIRS" : [0.1, 0.1, -0.1, -0.1]
+"FLIPPERS_DOWN_STAIRS" : [0, 0, 0.05, 0.05]
+
+# Flippers state - current dictionary
+"FLIPPERS_CURRENT_NEUTRAL" : [60, 60]
+"FLIPPERS_CURRENT_ASCENDING_FRONT" : [50, 40] # [40, 20]
+"FLIPPERS_CURRENT_ASCENDING_REAR" : [40, 50] #[20, 40]
+"FLIPPERS_CURRENT_DESCENDING_FRONT" : [40, 40] # [20, 15]
+"FLIPPERS_CURRENT_DESCENDING_REAR" : [40, 40] #[15, 15]
+"FLIPPERS_CURRENT_UP_STAIRS" : [50, 40]
+"FLIPPERS_CURRENT_DOWN_STAIRS" : [40, 40]
+
+

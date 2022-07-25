@@ -1,0 +1,4 @@
+"ros_rate" : 10
+"enable_path_filtering" : False
+"root_frame" : "world"
+"waypoint_reach_distance" : 0.2

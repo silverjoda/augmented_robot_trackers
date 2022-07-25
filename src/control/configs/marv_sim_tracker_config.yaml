@@ -1,0 +1,83 @@
+# ROS topic names
+"node_name" : "art_marv_tracker"
+"root_frame" : "map"
+"robot_prefix" : "X1/"
+"enable_flippers" : True
+"enable_cmd_vel" : True
+
+# Tracker vars
+"bidirectional_tracking" : False
+"enable_plan_filtering" : False
+"ros_rate" : 10
+"tf_buffer_size" : 10
+"waypoint_reach_distance" : 0.25
+"turn_vel_thresh" : 0.4 # Greater yaw deviations turn off linear velocity
+"turn_inhibition_sensitivity" : 1 # Affects how turn error inhibits linear velocity
+"turn_vel_sensitivity" : 2 # Sensitivity to linear error
+"lin_vel_sensitivity" : 3 # Sensitivity to turn error
+"cmd_vel_lin_scalar" : 0.6 # Scales the final velocity outputs
+"cmd_vel_ang_scalar" : 0.9 # Scales the final velocity outputs
+"cmd_vel_lin_clip" : 0.3 # Absolute clip values
+"cmd_vel_ang_clip" : 0.6 # Absolute clip values
+"tracker_burn_in_time" : 3 # Doesn't change state until this much time passes
+"tracker_momentum_vel_x_increment" : 0.05
+"tracker_momentum_vel_x_decrement" : 0.15
+"pc_z_median_offset" : -0.0
+
+# Flippers
+"enable_flipper_stabilization" : False
+"roll_stabilization_coeff" : 1
+"mode" : "handcrafted" # handcrafted, learned, nn
+"load_learned_parameters_sm" : False
+"load_learned_parameters_nn" : False
+"max_continuous_current" : 1
+"max_peak_current" : 6
+"theta_delta_thresh_neutral" : 0.3
+"temporarily_block_cmd_upon_descent" : True
+
+# State vel scalars
+"ascending_vel_factor" : 1
+"descending_vel_factor" : 1
+"rough_terrain_vel_factor" : 1
+"stairs_vel_factor" : 1
+
+# Flippers state - position dictionary
+"FLIPPERS_NEUTRAL" : [-2, -2, 1.5, 1.5]
+"FLIPPERS_ROUGH_TERRAIN" : [-0.7, -0.7, 0.2, 0.2]
+"FLIPPERS_ASCENDING_FRONT" : [-0.4, -0.4, 0.0, 0.0]
+"FLIPPERS_ASCENDING_REAR" : [0.1, 0.1, -0.6, -0.5]
+"FLIPPERS_DESCENDING_FRONT" : [0.35, 0.35, -0.7, -0.7]
+"FLIPPERS_DESCENDING_REAR" : [-0.3, -0.3, 0.4, 0.4]
+"FLIPPERS_UP_STAIRS" : [0.1, 0.1, -0.1, -0.1]
+"FLIPPERS_DOWN_STAIRS" : [0, 0, 0.05, 0.05]
+
+# Flippers state - current dictionary
+"FLIPPERS_CURRENT_NEUTRAL" : [60, 60]
+"FLIPPERS_CURRENT_ROUGH_TERRAIN" : [30, 30]
+"FLIPPERS_CURRENT_ASCENDING_FRONT" : [40, 30] # [40, 20]
+"FLIPPERS_CURRENT_ASCENDING_REAR" : [20, 30] #[20, 40]
+"FLIPPERS_CURRENT_DESCENDING_FRONT" : [30, 30] # [20, 15]
+"FLIPPERS_CURRENT_DESCENDING_REAR" : [30, 30] #[15, 15]
+"FLIPPERS_CURRENT_UP_STAIRS" : [30, 30]
+"FLIPPERS_CURRENT_DOWN_STAIRS" : [30, 30]
+
+# PC feature bounds
+"fl_flipper_feat_bnd" : [0.3, 0.7, 0.15, 0.35, -0.2, 0.3]
+"fr_flipper_feat_bnd" : [0.3, 0.7, -0.35, -0.15, -0.2, 0.3]
+"rl_flipper_feat_bnd" : [-0.4, -0.0, 0.15, 0.35, -0.2, 0.3]
+"rr_flipper_feat_bnd" : [-0.4, -0.0, -0.35, -0.15, -0.2, 0.3]
+"front_low_feat_bnd" : [0.35, 0.7, -0.35, 0.35, -0.2, 0.3]
+"front_mid_feat_bnd" : [0.35, 0.7, -0.35, 0.35, 0.4, 0.6]
+"rear_low_feat_bnd" : [-0.4, -0.0, -0.35, 0.35, -0.2, 0.3]
+"publish_pc_bnds" : True
+"n_max_intensity" : 40
+"max_bnd_pc_count" : 1000
+"max_pc_points" : 30000
+
+# NN parameters
+"hid_dim" : 32
+"lr" : 0.0005
+"n_epochs" : 1
+"batch_size" : 32
+
+

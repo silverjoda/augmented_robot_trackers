@@ -1,0 +1,7 @@
+<launch>
+    <node pkg="plugin_teleop" type="joy.py" name="$(anon teleop_joy_from_base)">
+        <param name="plugin_pkg" value="nifti_teleop_joy" />
+        <param name="priority" value="teleop_joy" />
+        <remap from="joy" to="teleop_joy/joy_translated" />
+    </node>        
+</launch>

@@ -1,0 +1,14 @@
+<launch>
+    <arg name="config_name" default="marv_sim_teleop_config.yaml" />
+    <arg name="enable_marv_sim_translator" default="true" />
+
+    <remap from="/marv/joy/cmd_vel" to="/X1/cmd_vel_tar"/>
+    
+    <node pkg="joy" type="joy_node" name="joy_node" output="screen"> 
+	<param name="default_trig_val" type="bool" value="true" />
+    </node>
+
+    <node pkg="augmented_robot_trackers" type="marv_teleop.py" name="marv_teleop" args="$(arg config_name)" output="screen" />
+    <node pkg="augmented_robot_trackers" type="marv_sim_translator.py" name="marv_sim_translator" output="screen" if="$(arg enable_marv_sim_translator)"/>
+    
+</launch>

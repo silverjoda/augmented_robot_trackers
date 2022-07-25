@@ -1,0 +1,15 @@
+<launch>
+    <arg name="robot" default="X1" />
+
+    <!-- Ekf odometry -->
+    <!-- <include file="$(find norlab_imu_tools)/launch/marv_odom.launch"/> --> 
+
+    <!-- Localisation and mapping -->
+    <include file="$(find marv_mapping)/launch/realtime_mapping.launch"/>'
+    
+    <!-- RDS -->
+    <include file="$(find augmented_robot_trackers)/launch/sim_marv_rds.launch"/>
+
+    <!-- Static path -->
+    <node pkg="augmented_robot_trackers" type="static_path_generator.py" name="static_path_generator" />
+</launch>

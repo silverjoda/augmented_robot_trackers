@@ -1,0 +1,21 @@
+"algo_name" : "SAC"
+"policy_name" : "MlpPolicy" # "MlpLstmPolicy", "MlpPolicy"
+"default_session_ID" :
+"n_envs" : 1
+"iters" : 300000
+"gamma" : 0.999
+"learning_rate" : "lambda x : x * 0.001"
+"buffer_size" : 500000
+"learning_starts" : 100000
+"batch_size" : 64
+"tau" : 0.005
+"policy_delay" : 2
+"target_policy_noise" : 0.1
+"target_noise_clip" : 0.1
+"policy_hid_dim" : 164
+"verbose" : 1
+"tensorboard_log" : False
+"ou_sigma" : 0.3
+"ou_theta" : 0.9
+"ou_dt" : 0.01
+"ent_coef" : 0.00003

@@ -1,0 +1,5 @@
+"session_ID" : "TRN"
+"iters" : 40000
+"batchsize" : 128
+"input_dim" : 18
+"dual_output" : True

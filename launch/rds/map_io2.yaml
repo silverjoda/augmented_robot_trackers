@@ -1,0 +1,42 @@
+# --------------------------- INPUT settings ---------------------------
+send_freq: 3.0
+profiling: false
+input_count: 1
+enable_filtering: false
+#gm_maxRendering: true
+#gm_sectorSize: 1.0
+#gm_sectorMinPoints: 1
+#gm_sectorMaxPoints: 100
+
+# ------------------- in0 ---------------------
+in0_sync_exact: true
+in0_sync_tolerance: 0.4
+in0_sync_timeout: 0.8
+#in0_sync_old_cloud_remove_time: 1.2
+
+in0_cloud_skip_step: 1
+in0_point_skip_step: 1
+in0_point_limit: 100000
+in0_ray_ratio: 5
+# cuts
+in0_pcd_cut_rect_enable: false
+in0_pcd_cut_range_enable: false
+in0_pcd_cut_rangez_enable: true
+
+in0_pcd_cut_range_min: 0.6
+in0_pcd_cut_range_max: 13.0
+in0_pcd_cut_range_vert: 3.0
+
+in0_pcd_cut_xmin: -9999.9
+in0_pcd_cut_ymin: -9999.9
+in0_pcd_cut_zmin: -9999.9
+in0_pcd_cut_xmax: 9999.9
+in0_pcd_cut_ymax: 9999.9
+in0_pcd_cut_zmax: 9999.9
+
+# variance computation
+in0_fuse_kalm_var2a: 0.01
+in0_fuse_kalm_var2b: 0.01
+
+
+

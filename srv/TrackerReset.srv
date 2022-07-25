@@ -1,0 +1,3 @@
+std_msgs/Empty dummy_input
+---
+bool dummy_response

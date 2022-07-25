@@ -1,0 +1,14 @@
+<launch>
+    <!-- <remap from="" to=""/> -->
+
+    <!-- Joy node -->
+    <node pkg="joy" type="joy_node" name="joy_node_test" output="screen">
+	    <param name="default_trig_val" type="bool" value="true" />
+        <param name="dev" type="str" value="/dev/input/js1" />
+    </node>
+
+    <!-- twist from joy -->
+    <node pkg="teleop_twist_joy" type="teleop_node" name="teleop_node_test" output="screen">
+        <remap from="cmd_vel" to="naex_tracker/cmd_vel"/>
+    </node>
+</launch>

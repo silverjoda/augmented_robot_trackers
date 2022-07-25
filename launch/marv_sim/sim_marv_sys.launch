@@ -1,0 +1,6 @@
+<launch>
+    <include file="$(find augmented_robot_trackers)/launch/sim_aloam_marv.launch"> </include>
+    <include file="$(find augmented_robot_trackers)/launch/sim_rds_marv_default.launch"> </include>
+        
+    <arg name="worldName" default="cave_circuit_practice_01" />
+</launch>

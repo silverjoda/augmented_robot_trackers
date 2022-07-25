@@ -1,0 +1,51 @@
+<launch>
+    <arg name="robot" default="X1" />
+    <arg name="enable_teleop" default="false" />
+    <arg name="enable_rds" default="true" />
+    <arg name="enable_path_follower" default="false" />
+    <arg name="enable_flipper_controller" default="true" />
+    <arg name="enable_flipper_modulator" default="true" />
+    <arg name="enable_static_path" default="false" />
+    <arg name="enable_feature_processor" default="true" />
+    <arg name="enable_rviz" default="false" />
+
+    <!--<node pkg="tf2_ros" type="static_transform_publisher" name="stp_world_circuit" args="0 0 0 0 0 0 1 map world" output="screen" />-->
+    <node pkg="augmented_robot_trackers" type="bl_zrp_frame_publisher_tradr_sys.py" name="bl_zrp_frame_publisher" />
+
+    <!-- Teleop -->
+    <include file="$(find augmented_robot_trackers)/launch/tradr_sys/sys_tradr_teleop.launch" if="$(arg enable_teleop)" />
+
+    <!-- RDS -->
+    <include file="$(find augmented_robot_trackers)/launch/tradr_sys/sys_tradr_rds.launch" if="$(arg enable_rds)"/>
+
+    <!-- Path follower -->
+    <group if="$(arg enable_path_follower)">
+        <node pkg="augmented_robot_trackers" type="tradr_sys_path_follower.py" name="path_follower" />
+    </group>
+
+    <!-- Flipper controller -->
+    <group if="$(arg enable_flipper_controller)">
+        <node pkg="augmented_robot_trackers" type="tradr_sys_flipper_controller.py" name="sys_flipper_controller" />
+    </group>
+
+    <!-- Flipper modulator -->
+    <group if="$(arg enable_flipper_modulator)">
+        <node pkg="augmented_robot_trackers" type="tradr_sys_flipper_modulator.py" name="sys_flipper_modulator" />
+    </group>
+
+    <!-- Static path -->
+    <group if="$(arg enable_static_path)"> <!-- tradr_sys_teach_and_repeat.py -->
+        <node pkg="augmented_robot_trackers" type="tradr_sys_static_path_generator.py" name="static_path_generator" />
+    </group>
+
+    <!-- Feature processor -->
+    <group if="$(arg enable_feature_processor)">
+        <node pkg="augmented_robot_trackers" type="tradr_sys_feature_processor.py" name="tradr_sys_feature_processor" />
+    </group>
+
+    <!-- Rviz -->
+    <group if="$(arg enable_rviz)">
+        <node launch-prefix="nice" pkg="rviz" type="rviz" name="rviz" args="-d $(find augmented_robot_trackers)/rviz_cfg/sys_tradr_tracker_debug.rviz" />
+    </group>
+
+</launch>

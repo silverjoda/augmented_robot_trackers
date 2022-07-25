@@ -1,0 +1,19 @@
+<launch>
+	<!-- Interractive GUI (not mandatory, just for commanding the robot) -->
+	<node pkg="rds_multirob_teleop" type="rds_interact_node" name="multi_teleop" output="log" >
+		<param name="robotCount" value="1" />
+		<param name="frame_name" value="world" />
+		
+		<remap from="unit0/command" to="/husky/rds/ubercommand"/>
+		<remap from="unit0/odom" 	to="/husky/odom"/>
+		<remap from="unit0/map_in" 	to="/husky/rds/traversability_visual"/>
+		<remap from="unit0/map_out" to="/unit0/map_out"/>
+		
+		<remap from="keyboard" 	to="rviz_keyboard_publisher"/>
+	</node>
+	
+	<!-- RVIZ -->
+	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find rds_map_nav)/launch/stdr_default.rviz" />	
+		
+</launch>
+
